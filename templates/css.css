@@ -1,0 +1,107 @@
+html, body, div, img, li, form, fieldset, input, textarea, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, table, blockquote, hr {
+    margin: 0;
+    padding: 0;
+}
+
+a:link, a:visited, a:hover, a:active, a:focus {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Trebuchet MS',Arial,Helvetica,Sans-serif;
+    line-height: 20px;
+    word-spacing: 1px;
+    font-size: 12px;
+}
+
+#header, #content {
+    margin: 0 auto;
+    width: 960px;
+}
+
+
+#banniere{
+    background: url("./images/banniere.png") no-repeat top center #64aed3;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+#navigation {
+    height: 45px;
+    background: #9d9d9d;
+    border-bottom: 1px solid #574a4a;
+    border-right: 1px solid #574a4a;
+    margin-bottom: 1px;
+}
+
+#navigation ul {
+    list-style: none outside none;
+}
+
+#navigation li {
+    cursor: pointer;
+    float: left;
+    height: 45px;
+    width: 150px;
+    border-right: 1px solid #574a4a;
+    text-align: center;
+}
+
+/*Voir sur d'autre navigateur'*/
+#navigation li:last-child {
+    float: right;
+    border-right: none;
+    border-left: 1px solid #574a4a;
+}
+
+#navigation .currentpage {
+   background-color: #68b8d8;    
+}
+#navigation li:hover {
+   background-color: #6d95a6;    
+}
+
+
+#navigation a {
+    position: relative;
+    top: 12px;
+    color: white;
+    font-size: 20px;
+}
+
+hr {
+    width: 960px;
+    height: 5px;
+    background-color: #64aed3;
+    border: none;
+}
+
+
+/****Content****/
+#content {
+    padding: 20px 0;
+}
+
+h1 {
+    color: #214f68;
+    font-size: 26px;
+    font-family: "kulturista-web-1","kulturista-web-2";
+}
+
+.contenu {
+    background-color: black;
+    margin: 0 10px;
+    width: 630px;
+}
+
+.colonne_droite {
+    float: right;
+    margin: 0 10px;
+    background-color: #64aed3;
+    width: 300px;
+    height: 300px;
+}
+
+.colonne_droite h2 {
+    color: #1b4f6a;
+}
