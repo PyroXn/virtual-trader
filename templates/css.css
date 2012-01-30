@@ -12,11 +12,14 @@ body {
     line-height: 20px;
     word-spacing: 1px;
     font-size: 12px;
+    background-color: grey;
 }
 
-#header, #content {
+#header, #content, #footer {
     margin: 0 auto;
     width: 960px;
+    background-color: white;
+    padding: 10px;
 }
 
 
@@ -79,7 +82,7 @@ hr {
 
 /****Content****/
 #content {
-    padding: 20px 0;
+/*    padding: 20px 0;*/
 }
 
 h1 {
@@ -90,18 +93,62 @@ h1 {
 
 .contenu {
     background-color: black;
-    margin: 0 10px;
-    width: 630px;
+/*    margin: 0 10px;*/
+    width: 710px;
+    height: 500px;
 }
 
 .colonne_droite {
     float: right;
-    margin: 0 10px;
+}
+
+.cadre_bleu {
+/*    margin: 0 10px;*/
+    padding: 15px;
     background-color: #64aed3;
-    width: 300px;
-    height: 300px;
+}
+
+.connexion {
+    width: 200px;
+    height: 190px;
+    margin-bottom: 10px;
+}
+
+.classement {
+    width: 200px;
+    height: 190px;
 }
 
 .colonne_droite h2 {
     color: #1b4f6a;
+}
+
+input[type=text] {
+    margin-top: 20px;
+    width: 193px;
+    height: 25px;
+}
+
+input[type=submit] {
+    margin: 10px 0 10px 32px;
+    height: 25px;
+    width: 140px;
+}
+
+.mini_texte {
+    margin-top: 2px;
+    margin-left: 2px;
+    font-size: 10px;
+    color: white;
+}
+
+.mini_h2 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
+#footer {
+    background-color: #64aed3;
+    height: 15px;
 }
