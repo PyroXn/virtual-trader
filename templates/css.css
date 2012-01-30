@@ -22,6 +22,14 @@ body {
     padding: 10px;
 }
 
+.clearboth {
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    width: 100%;
+}
 
 #banniere{
     background: url("./images/banniere.png") no-repeat top center #64aed3;
@@ -82,19 +90,26 @@ hr {
 
 /****Content****/
 #content {
-/*    padding: 20px 0;*/
 }
 
 h1 {
     color: #214f68;
     font-size: 26px;
     font-family: "kulturista-web-1","kulturista-web-2";
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    text-align: justify;
+    line-height: 20px;
+    word-spacing: 1px;
+    margin-bottom: 10px;
 }
 
 .contenu {
-    background-color: black;
-/*    margin: 0 10px;*/
-    width: 710px;
+    margin-left: 10px;
+    width: 700px;
     height: 500px;
 }
 
@@ -103,7 +118,6 @@ h1 {
 }
 
 .cadre_bleu {
-/*    margin: 0 10px;*/
     padding: 15px;
     background-color: #64aed3;
 }
@@ -148,7 +162,15 @@ input[type=submit] {
 }
 
 
-#footer {
+#contenu_footer {
     background-color: #64aed3;
-    height: 15px;
+    height: 20px;
+    font-size: 11px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.copyright a {
+    color: white;
 }
