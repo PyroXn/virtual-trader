@@ -31,10 +31,35 @@ body {
     width: 100%;
 }
 
+ul {
+    list-style: none outside none;
+}
+
 #banniere{
     background: url("./images/banniere.png") no-repeat top center #64aed3;
     height: 100px;
     margin-bottom: 20px;
+    font-family: "Times New Roman", Times, "Liberation Serif", FreeSerif, serif;
+    font-style: italic;
+/*    font-weight: bold;*/
+    font-size: 13px;
+}
+
+#banniere ul {
+    float: right;
+    margin-right: 65px;
+    margin-top: 17px;
+}
+
+#banniere li {
+    text-align: right;
+    background-image: linear-gradient(right, #94c7e1, rgba(125,187,218,0));
+    background-image: -moz-linear-gradient(right, #94c7e1, rgba(125,187,218,0));
+    background-image: -webkit-linear-gradient(right, #94c7e1, rgba(125,187,218,0));
+    background-image: -o-linear-gradient(right, #94c7e1, rgba(125,187,218,0));
+    background-image: -ms-linear-gradient(right, #94c7e1, rgba(125,187,218,0));
+    margin-bottom: 4px;
+    padding-right: 2px;
 }
 
 #navigation {
@@ -43,10 +68,6 @@ body {
     border-bottom: 1px solid #574a4a;
     border-right: 1px solid #574a4a;
     margin-bottom: 1px;
-}
-
-#navigation ul {
-    list-style: none outside none;
 }
 
 #navigation li {
@@ -124,26 +145,65 @@ p {
 
 .connexion {
     width: 200px;
-    height: 190px;
+    height: 180px;
     margin-bottom: 10px;
 }
 
 .classement {
     width: 200px;
-    height: 190px;
+    height: 185px;
 }
 
-.colonne_droite h2 {
-    color: #1b4f6a;
+.classement ul {
+    margin-top: 20px;
+    background-color: white;
+    font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif;
+    
+    font-size: 11px;
+}
+
+.classement li {
+    margin-bottom: 5px;
+}
+
+.classement .pseudo {
+    display: inline-block;
+    width: 110px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.classement .progression {
+    float: right;
+    color: #2fb500;
+    margin-right: 5px;
+}
+
+.classement .regression {
+    float: right;
+    color: #b51500;
+    margin-right: 5px;
+}
+
+h2 {
+    color: #194c67;
+    border-bottom: 1px solid white;
 }
 
 input[type=text] {
+    display: block;
     margin-top: 20px;
     width: 193px;
     height: 25px;
 }
 
+input[type=checkbox] {
+    margin-top: 20px;
+    margin-right: 5px;
+}
+
 input[type=submit] {
+    display: block;
     margin: 10px 0 10px 32px;
     height: 25px;
     width: 140px;
@@ -161,6 +221,25 @@ input[type=submit] {
     font-weight: normal;
 }
 
+#inscription {
+    margin: 0 auto;
+    width: 500px;
+}
+
+#inscription span {
+    color: white;
+    vertical-align: 2px;
+}
+#inscription input {
+    text-align: center;
+    margin-left: 10px;
+/*    margin: 10px auto;*/
+}
+
+#inscription input[type=submit], #inscription input[type=text] {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 #contenu_footer {
     background-color: #64aed3;
