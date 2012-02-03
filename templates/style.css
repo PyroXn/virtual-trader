@@ -140,6 +140,9 @@ p {
 .cadre_bleu {
     padding: 15px;
     background-color: #64aed3;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
 }
 
 .connexion {
@@ -152,22 +155,45 @@ p {
 }
 
 .classement ul {
-    margin-top: 20px;
+    margin-top: 8px;
     background-color: white;
     font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif;
-    
     font-size: 11px;
+    border: 1px solid #9D9D9D;
 }
 
 .classement li {
-    margin-bottom: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px dotted #9D9D9D;
+}
+
+.classement li:hover {
+    cursor: pointer;
+    background-color: #94c7e1;
+}
+
+.classement li:last-child {
+    border-bottom: none;
 }
 
 .classement .pseudo {
     display: inline-block;
-    width: 110px;
     margin-left: 5px;
     font-weight: bold;
+}
+
+.classement .capital {
+    float: right;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.classement .numerotation {
+    margin-left: 5px;
+}
+
+.classement .pagination {
+    cursor: pointer;
 }
 
 .classement .progression {
@@ -188,16 +214,14 @@ h2 {
 }
 
 input[type=text] {
-    display: block;
     margin-top: 20px;
-    width: 193px;
+    width: 175px;
     height: 25px;
 }
 
 input[type=password] {
-    display: block;
     margin-top: 20px;
-    width: 193px;
+    width: 175px;
     height: 25px;
 }
 
@@ -211,6 +235,17 @@ input[type=submit] {
     margin: 10px 0 10px 32px;
     height: 25px;
     width: 140px;
+}
+
+.error {
+    position: relative;
+    font-size: 85%;
+    font-style: italic;
+    font-weight: bold;
+    color: #e70000;
+    margin-left: 5px;
+    display: none;
+    top: 1px;
 }
 
 .mini_texte {
@@ -258,12 +293,3 @@ input[type=submit] {
     color: white;
 }
 
-.error {
-    font-size: 85%;
-    font-style: italic;
-    font-weight: bold;
-    color: #e70000;
-    margin-left: 5px;
-    display: none;
-
-}

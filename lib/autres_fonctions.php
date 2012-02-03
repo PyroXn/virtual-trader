@@ -150,7 +150,7 @@ function getTop10() {
     $contenu = '';
         while ($data = mysql_fetch_assoc($req)) {
             $first++;
-            $contenu .= '<li>'.$first.'<span class="pseudo">'.$data['Nom'].'</span><span class="capital">'.$data['Argent_pot'].'</span><span class="progression">10%</span></li>';
+            $contenu .= '<li><span class="numerotation">'.$first.'</span><span class="pseudo">'.$data['Nom'].'</span><span class="capital">'.$data['Argent_pot'].'</span></li>';
         }
         return $contenu;
 }
@@ -168,7 +168,7 @@ function AjaxgetTop10() {
     $contenu = '';
         while ($data = mysql_fetch_assoc($req)) {
             $first++;
-            $contenu .= '<li>'.$first.'<span class="pseudo">'.$data['Nom'].'</span><span class="capital">'.$data['Argent_pot'].'</span><span class="progression">10%</span></li>';
+            $contenu .= '<li><span class="numerotation">'.$first.'</span><span class="pseudo">'.$data['Nom'].'</span><span class="capital">'.$data['Argent_pot'].'</span></li>';
         }
         echo $contenu;
 }
