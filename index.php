@@ -103,10 +103,10 @@ function formulaire_inscription() {
     $contenu = '<center><h2>Inscription</h2></center>
 		<p>Afin de jouer à Virtual-Trader, merci de bien vouloir remplir ces différents champs.</p>
 			<form action="index.php?page=verification_inscription" method="post">
-                        <div><input type="text" name="login" id="login" placeholder="Login"><span class="error"></span></div>
-<div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"><span class="error"></span></div>
-<div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"><span class="error"></span></div>
-<input type="submit" value="Envoyer" id="submitInscription">
+                        <div><input type="text" name="login" id="login" placeholder="Login"/><span class="error"></span></div>
+<div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
+<div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
+<input type="submit" value="Envoyer" id="submitInscription"/>
 			</form><div class="clearboth"></div>';
     display($contenu);
 }
