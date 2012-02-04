@@ -114,20 +114,20 @@
                         $argent_potentiel = $infos_joueur['Argent'] + $valeur_action;
                         update_argent($argent_potentiel, $_SESSION['nom']);
                         ?>
-                        <h2>Vos informations</h2>
-                        <table border="0">
-                            <tr><td>Nom :</td><td><?php echo $infos_joueur['Nom']; ?></td></tr>
-                            <tr><td>Argent :</td><td><?php echo $infos_joueur['Argent']; ?></td></tr>
-                            <tr><td>Potentiel :</td><td><?php echo $infos_joueur['Argent_pot']; ?></td></tr>
-                        </table>
+                        <h2><img src="./templates/img/info-utilisateur.png"> Vos informations</h2>
+                        <ul>
+                            <li><b>Nom</b> : <?php echo $infos_joueur['Nom']; ?></li>
+                            <li><b>Argent</b> : <?php echo $infos_joueur['Argent']; ?></li>
+                            <li><b>Potentiel</b> : <?php echo $infos_joueur['Argent_pot']; ?></li>
+                        </ul>
                         <h2><img src="./templates/img/house.png"> Menu</h2>
                         <ul>
                             <li><a href="index.php?page=mes_actions">Mes actions</a></li>
                             <li><a href="index.php?page=bourse">Bourse</a></li>
                             <?php
-                            $nb_message = nb_message($_SESSION['nom']);
+                                $nb_message = nb_message($_SESSION['nom']);
                             ?>
-                            <li><a href="index.php?page=messagerie">Messagerie(<?php echo $nb_message; ?>)</a></li>
+                            <li><a href="index.php?page=messagerie">Messagerie<?php if ($nb_message > 0) { echo "<span class='red'> (".$nb_message.")</span>";} ?></a></li>
                         </ul>
                         <h2><img src="./templates/img/user.png"> Utilisateur</h2>
                         <ul>

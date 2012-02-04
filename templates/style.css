@@ -1,4 +1,4 @@
-html, body, div, img, li, form, fieldset, input, textarea, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, table, blockquote, hr {
+html, body, div, img, li, form, fieldset, input, textarea, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, table, blockquote, hr, td, tr, table {
     margin: 0;
     padding: 0;
 }
@@ -12,7 +12,7 @@ body {
     line-height: 20px;
     word-spacing: 1px;
     font-size: 12px;
-    background-color: grey;
+    background: #5A5142 url(./img/fd.png);
 }
 
 #header, #content, #footer {
@@ -99,6 +99,7 @@ ul {
     top: 8px;
     color: white;
     font-size: 18px;
+    display: block;
 }
 
 hr {
@@ -148,6 +149,19 @@ p {
 .connexion {
     width: 200px;
     margin-bottom: 10px;
+}
+
+.connexion a {
+    color: white;
+}
+
+.connexion a:hover {
+    color: #194C67;
+}
+
+.connexion .red {
+    color: #b51500;
+    font-weight: bold;
 }
 
 .classement {
@@ -215,13 +229,13 @@ h2 {
 
 input[type=text] {
     margin-top: 20px;
-    width: 175px;
+    width: 173px;
     height: 25px;
 }
 
 input[type=password] {
     margin-top: 20px;
-    width: 175px;
+    width: 173px;
     height: 25px;
 }
 
@@ -232,6 +246,7 @@ input[type=checkbox] {
 
 input[type=submit] {
     display: block;
+    
     margin: 10px 0 10px 32px;
     height: 25px;
     width: 140px;
@@ -245,10 +260,11 @@ input[type=submit] {
     color: #e70000;
     margin-left: 5px;
     display: none;
-    top: 1px;
+    top: 2px;
 }
 
 .mini_texte {
+    display: block;
     margin-top: 2px;
     margin-left: 2px;
     font-size: 10px;
@@ -293,3 +309,42 @@ input[type=submit] {
     color: white;
 }
 
+/***Messagerie***/
+#messagerie td {
+    width: 150px;
+        
+}
+
+#messagerie .repondre a, #messagerie .supprimer a {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url("./img/mail.png");
+}
+
+#messagerie .supprimer a {
+    background-image: url("./img/supp.png");
+    width: 15px;
+    height: 15px;
+}
+
+#bourse {
+    border: none;
+    border-spacing: 0;
+}
+
+#bourse tr {
+    height: 26px;
+}
+
+#bourse td {
+    border: none;
+}
+
+.pair {
+    background-color: #e2e9f1;
+}
+
+.impair {
+    background-color: #ebebeb;
+}

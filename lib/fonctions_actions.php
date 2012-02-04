@@ -98,7 +98,7 @@ BEGIN;
     preg_match_all(trim($pattern_nom), $code, $noms_actions);
     preg_match_all(trim($pattern_indice), $code, $cours_actions);
     $contenu = '<center><h2>Les cours de la bourse</h2></center>';
-    $contenu .= '<table border=0';
+    $contenu .= '<table id="bourse">';
     $contenu .= '<tr>';
     $contenu .= '<td width="40%"><b>Libellé </b></td>';
     $contenu .= '<td width="17%"><b>Cours </b></td>';
@@ -111,7 +111,12 @@ BEGIN;
         //mysql_query("INSERT INTO actions SET Nom='".$noms_actions[1][$i]."',Clot_prec='10.70',Price='".$cours_actions[1][$i]."'");
         /*$cours = preg_replace("/,/",".",$cours_actions[1][$i]);
         mysql_query("INSERT INTO `actions`(Nom,Clot_prec,Price) VALUES ('".$noms_actions[1][$i]."','".$cours."','".$cours."')");*/
-        $contenu .= '<tr>';
+        if ($i%2 == 0) {
+            $contenu .= '<tr class="pair">';
+        } else {
+            $contenu .= '<tr class="impair">';
+        }
+        
         $contenu .= '<td width="40%">' . $noms_actions[1][$i] . '</td>';
         $contenu .= '<td width="20%">' . $cours_actions[1][$i] . '</td>';
         // On recherche les informations de la cloture precedente

@@ -18,19 +18,16 @@
 			<li><a href="index.php?page=messagerie">Boite de reception</a></li>
 		</ul>
 		</p>';
-		$contenu .= '<table border="0">
-		<tr>
-			<td width="15%"><b>Id</b></td>
-			<td width="20%"><b>Expediteur</b></td>
-			<td width="25%"><b>Objet</b></td>
-			<td width="10%"><b>Etat</b></td>
-			<td width="20%"><b>Repondre</b></td>
-			<td width="10%"><b>Supprimer</b></td>
-		</tr>';
+		$contenu .= '                   
+                    <table id="messagerie">
+                        <tr>
+                            <td><b>Expediteur</b></td>
+                            <td><b>Objet</b></td>
+                            <td><b>Etat</b></td>
+                        </tr>';
 		while($liste_message = mysql_fetch_assoc($liste_message_brut))
 		{
 			$contenu .= '<tr>';
-			$contenu .= '<td>'.$liste_message['Id'].'</td>';
 			$contenu .= '<td>'.$liste_message['Expediteur'].'</td>';
 			$contenu .= '<td><a href="index.php?page=afficher_message&id='.$liste_message['Id'].'">'.$liste_message['Objet'].'</a></td>';
 			if ($liste_message['Etat'] == 0)
@@ -41,8 +38,8 @@
 			{
 				$contenu .= '<td><b><font color="green">Lu</font></b></td>';
 			}
-			$contenu .= '<td><a href="index.php?page=envoyer_message&joueurs='.$liste_message['Expediteur'].'">Repondre</a></td>';
-			$contenu .= '<td><a href="index.php?page=supprimer_message&id='.$liste_message['Id'].'"><img src="./templates/img/supp.png"></a></td>';
+			$contenu .= '<td class="repondre"><a title="Répondre" href="index.php?page=envoyer_message&joueurs='.$liste_message['Expediteur'].'"></a></td>';
+			$contenu .= '<td class="supprimer"><a title="Supprimer" href="index.php?page=supprimer_message&id='.$liste_message['Id'].'"></a></td>';
 			$contenu .= '</tr>';
 		}
 		$contenu .= '</table><div class="clearboth"></div>';
