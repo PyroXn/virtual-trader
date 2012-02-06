@@ -176,7 +176,7 @@ function formulaire_achat() {
 			<tr>
 				<td></td><td><input type="submit" value="Envoyer"></td></tr>
 			</table>
-			</form></p><div class="clearboth"></div>';
+			</form></p>';
     display($contenu);
 }
 
@@ -213,7 +213,7 @@ function achat() {
     }
     // On vérifie que l'utilisateur a assez d'argent
     if ($infos_joueur['Argent'] < $total) {
-        $contenu = 'Vous n\'avez pas assez d\'argent.<div class="clearboth"></div>';
+        $contenu = 'Vous n\'avez pas assez d\'argent.';
         display($contenu);
         exit();
     }
@@ -227,7 +227,7 @@ function achat() {
 		<tr><td><b>Prix unitaire :</b></td><td>' . $infos_action['Price'] . '</td></tr>
 		<tr><td><b>Total HT :</b></td><td>' . $prix_total . ' &euro;</td></tr>
 		<tr><td><b>Taxe :</b></td><td>' . $frais . ' &euro;</td></tr>
-		<tr><td><b>Total TTC :</b></td><td>' . $total . ' &euro;</td></tr></p></table></center><div class="clearboth"></div>';
+		<tr><td><b>Total TTC :</b></td><td>' . $total . ' &euro;</td></tr></p></table></center>';
     display($contenu);
 }
 
@@ -244,7 +244,7 @@ function formulaire_vente() {
     $prix_action_brut = $_GET['prix'];
     $prix_action = str_replace(",", ".", $prix_action_brut);
     if ($heure >= 19 || $heure <= 8) {
-        $contenu = '<p>La bourse est actuellement fermé. Les achats/ventes ne peuvent se faire que lorsque celle-ci est ouverte.</p><div class="clearboth"></div>';
+        $contenu = '<p>La bourse est actuellement fermé. Les achats/ventes ne peuvent se faire que lorsque celle-ci est ouverte.</p>';
         display($contenu);
         exit();
     }
@@ -274,7 +274,7 @@ function formulaire_vente() {
 						<td></td><td><input type="submit" value="Envoyer"></td>
 					</tr>
 					</table>
-					</form></p><div class="clearboth"></div>';
+					</form></p>';
     display($contenu);
 }
 
@@ -293,11 +293,11 @@ function vente() {
     $nom_action = $_POST['action'];
     $quantite_action = $_POST['quantite'];
     if ($quantite_action > $infos_joueur[$action_quantite]) {
-        $contenu = 'Vous ne pouvez pas vendre plus d\'action que vous en possedez.<div class="clearboth"></div>';
+        $contenu = 'Vous ne pouvez pas vendre plus d\'action que vous en possedez.';
         display($contenu);
         exit();
     } elseif ($quantite_action < 0 || !is_numeric($quantite_action)) {
-        $contenu = 'Merci de bien vouloir saisir un nombre d\'action positif.<div class="clearboth"></div>';
+        $contenu = 'Merci de bien vouloir saisir un nombre d\'action positif.';
         display($contenu);
         exit();
     }
@@ -316,7 +316,7 @@ function vente() {
 		<tr><td><b>Quantite :</b></td><td>' . $quantite_action . '</td></tr>
 		<tr><td><b>Prix unitaire :</b></td><td>' . $infos_action['Price'] . '</td></tr>
 		<tr><td><b>Total HT :</b></td><td>' . $total_vendu . ' €</td></tr>
-		</p></table></center><div class="clearboth"></div>';
+		</p></table></center>';
     display($contenu);
 }
 

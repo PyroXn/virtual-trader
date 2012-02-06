@@ -95,7 +95,7 @@ function accueil() {
 			<center><h2>Screenshot</h2></center>
 			<p><center><a href="./templates/img/bourse.png"><img src="./templates/img/bourse.png" height="90" width="120"></a><a href="./templates/img/vos_actions.png"><img src="./templates/img/vos_actions.png" height="90" width="120"></a>
 			</center><br />
-			<p>Virtual Trader met à votre disposition une interface claire, simple et éfficace. Alors n\'attendez plus, et rejoignez nous !</p><div class="clearboth"></div>';
+			<p>Virtual Trader met à votre disposition une interface claire, simple et éfficace. Alors n\'attendez plus, et rejoignez nous !</p>';
     display($contenu);
 }
 
@@ -107,7 +107,7 @@ function formulaire_inscription() {
 <div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
 <div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
 <input type="submit" value="Envoyer" id="submitInscription"/>
-			</form><div class="clearboth"></div>';
+			</form>';
     display($contenu);
 }
 
@@ -115,11 +115,11 @@ function verification_inscription() {
     connect();
     $resultat = inscription($_POST['login'], $_POST['mdp'], $_POST['mail']);
     if ($resultat == 0) {
-        $contenu = "Merci de bien vouloir compléter tous les champs.<div class=\"clearboth\"></div>";
+        $contenu = "Merci de bien vouloir compléter tous les champs.";
     } elseif ($resultat == 1) {
-        $contenu = "Login ou Adresse-email déjà utilisé.<div class=\"clearboth\"></div>";
+        $contenu = "Login ou Adresse-email déjà utilisé.";
     } else {
-        $contenu = "Inscription réalisé avec succès. Vous pouvez dès maintenant vous connecter.<div class=\"clearboth\"></div>";
+        $contenu = "Inscription réalisé avec succès. Vous pouvez dès maintenant vous connecter.";
     }
     display($contenu);
 }
@@ -167,7 +167,7 @@ function formulaire_contact() {
 				<td></td><td><input type="submit" name="envoyer" value="Envoyer"></td>
 			</tr>
 			</form>
-			</table><div class="clearboth"></div>';
+			</table>';
     display($contenu);
 }
 
@@ -180,11 +180,11 @@ function verification_contact() {
     $email = mysql_real_escape_string($_POST['email']);
     $destinataire = 'florian.janson@mydevhouse.com'; // Adresse e-mail du destinataire
     if (!preg_match("#@#", $email) || !preg_match("#[.]#", $email)) {
-        $contenu = 'Adresse e-mail incorrect.<div class="clearboth"></div>';
+        $contenu = 'Adresse e-mail incorrect.';
         display($contenu);
         exit();
     } elseif ($nom == '' || $prenom == '' || $sujet == '' || $message == '') {
-        $contenu = 'Merci de bien vouloir remplir tous les champs du formulaire.<div class="clearboth"></div>';
+        $contenu = 'Merci de bien vouloir remplir tous les champs du formulaire.';
         display($contenu);
         exit();
     }
@@ -197,14 +197,14 @@ function verification_contact() {
     $texte .= "<b>Message :</b>" . $message . "";
     mail($destinataire, $sujet, $texte, $From);
     // Affichage du message de confirmation
-    $contenu = 'Message envoyé avec succès. Nous vous répondrons dans les plus bref délais.<div class="clearboth"></div>';
+    $contenu = 'Message envoyé avec succès. Nous vous répondrons dans les plus bref délais.';
     display($contenu);
 }
 
 function deconnexion() {
     verification();
     session_destroy();
-    $contenu = 'Vous vous étes bien déconnecté.<div class="clearboth"></div>';
+    $contenu = 'Vous vous étes bien déconnecté.';
     display($contenu);
 }
 

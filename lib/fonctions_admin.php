@@ -24,7 +24,7 @@ function accueilAdmin() {
     }
     $contenu .= '</select>';
     $contenu .= ' <input type="submit" value="Valider">';
-    $contenu .= '</form><div class="clearboth"></div>';
+    $contenu .= '</form>';
     display($contenu);
 }
 
@@ -35,7 +35,7 @@ function validerCpt() {
     $sql = 'UPDATE joueurs SET Etat=0 WHERE Id="'.$id.'"';
     $req = mysql_query($sql);
     $contenu = '<center><h2>Compte validé avec succès</h2></center>';
-    $contenu .= '<p>Le compte choisi a bien été validé.</p><div class="clearboth"></div>';
+    $contenu .= '<p>Le compte choisi a bien été validé.</p>';
     display($contenu);
 }
 ?>

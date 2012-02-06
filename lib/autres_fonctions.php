@@ -100,7 +100,6 @@ function mon_compte() {
 //		</tr>
 //		</table>
 //		</p>
-                        $contenu .= '<div class="clearboth"></div>';
     display($contenu);
 }
 
@@ -109,22 +108,22 @@ function changement_password() {
     connect();
     $infos_joueur = infos_joueur($_SESSION['nom']);
     if (!isset($_POST['vieu']) || !isset($_POST['new']) || !isset($_POST['new2'])) {
-        $contenu = 'Merci de bien vouloir saisir tous les champs.<div class="clearboth"></div>';
+        $contenu = 'Merci de bien vouloir saisir tous les champs.';
         display($contenu);
         exit();
     } elseif ($_POST['new'] != $_POST['new2']) {
-        $contenu = 'Merci de bien vouloir re-saisir vos mot de passe.<div class="clearboth"></div>';
+        $contenu = 'Merci de bien vouloir re-saisir vos mot de passe.';
         display($contenu);
         exit();
     } elseif (md5($_POST['vieu']) != $infos_joueur['Password']) {
-        $contenu = 'Votre ancien mot de passe ne correspond pas.<div class="clearboth"></div>';
+        $contenu = 'Votre ancien mot de passe ne correspond pas.';
         display($contenu);
         exit();
     }
     $nouveau_password = md5($_POST['new']);
     mysql_query("UPDATE joueurs SET Password='" . $nouveau_password . "' WHERE Nom='" . $_SESSION['nom'] . "'");
     $contenu = '<center><h2>Mon compte</h2></center>';
-    $contenu .= 'Mot de passe modifié avec succès.<div class="clearboth"></div>';
+    $contenu .= 'Mot de passe modifié avec succès.';
     display($contenu);
 }
 
@@ -133,7 +132,7 @@ function supprimer_compte() {
     connect();
     mysql_query("DELETE FROM joueurs WHERE Nom='" . $_SESSION['nom'] . "'");
     $contenu = '<center><h2>Mon compte</h2></center>';
-    $contenu .= 'Votre compte a bien été supprimé.<div class="clearboth"></div>';
+    $contenu .= 'Votre compte a bien été supprimé.';
     display($contenu);
 }
 
@@ -210,7 +209,6 @@ function classement() {
     for ($i = 1; $i <= $nbPage; $i++) {
         $contenu .= '<a class="pagina" name="' . $i . '">' . $i . '</a>';
     }
-    $contenu .= '<div class="clearboth"></div>';
     display($contenu);
 }
 
@@ -273,7 +271,6 @@ function historique() {
 							<td width="15%" align="center">' . $historique['Total'] . '</td>
 						</tr>';
     }
-    $contenu .= '</table><div class="clearboth"></div>';
     display($contenu);
 }
 ?>		

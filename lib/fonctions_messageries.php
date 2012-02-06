@@ -42,7 +42,7 @@
 			$contenu .= '<td class="supprimer"><a title="Supprimer" href="index.php?page=supprimer_message&id='.$liste_message['Id'].'"></a></td>';
 			$contenu .= '</tr>';
 		}
-		$contenu .= '</table><div class="clearboth"></div>';
+		$contenu .= '</table>';
 		display($contenu);
 	}
 	// Fonction d'envois de message
@@ -65,7 +65,7 @@
 			<tr><td>Message :</td><td><TEXTAREA name="message" rows=10 COLS=40>Tapez votre message</textarea></td></tr>
 			<tr><td><input type="submit" value="Envoyer"></td><td><input type="reset" name="Annuler"></td></tr>
 		</tr>
-		</table><div class="clearboth"></div>';
+		</table>';
 		display($contenu);
 	}
 
@@ -81,19 +81,19 @@
 		$nombre_destinataire = mysql_num_rows($verification_destinataire);
 		if ($expediteur == '' || $destinataire == '' | $objet == '' || $message == '')
 		{
-			$contenu = 'Merci de bien vouloir remplir tous les champs.<div class="clearboth"></div>';
+			$contenu = 'Merci de bien vouloir remplir tous les champs.';
 			display($contenu);
 			exit();
 		}
 		elseif ($nombre_destinataire == 0)
 		{
-			$contenu = 'Le destinataire n\'éxiste pas.<div class="clearboth"></div>';
+			$contenu = 'Le destinataire n\'éxiste pas.';
 			display($contenu);
 			exit();
 		}
 		elseif ($nombre_destinataire == 1)
 		{
-			$contenu = 'Message envoyé avec succès.<div class="clearboth"></div>';
+			$contenu = 'Message envoyé avec succès.';
 			$insertion_message = mysql_query("INSERT INTO messages SET `Expediteur`='".$expediteur."', `Destinataire`='".$destinataire."', `Objet`='".$objet."', `Message`='".$message."',`Etat`=0");
 			display($contenu);
 		}
@@ -109,12 +109,12 @@
 		{
 			mysql_query("DELETE FROM messages WHERE Id='".$id_a_supprimer."'");
 			$contenu = '<h2>Messagerie</h2>';
-			$contenu .= 'Message supprimé avec succès.<div class="clearboth"></div>';
+			$contenu .= 'Message supprimé avec succès.';
 		}
 		else
 		{
 			$contenu = '<h2>Tentative de piratage</h2>';
-			$contenu .= 'Tentative de piratage détecté. Votre ID a été transmis à l\'administrateur.<div class="clearboth"></div>';
+			$contenu .= 'Tentative de piratage détecté. Votre ID a été transmis à l\'administrateur.';
 		}
 		display($contenu);
 	}
@@ -128,7 +128,7 @@
 		$nb_message = mysql_num_rows($message_brut);
 		if ($nb_message == 0) // On verifie que le MP est bien destiné à l'utilisateur <== SECURITE
 		{
-			$contenu = 'Tentative de triche détectée. Votre ID a été transmis à l\'administrateur.<div class="clearboth"></div>';
+			$contenu = 'Tentative de triche détectée. Votre ID a été transmis à l\'administrateur.';
 			display($contenu);
 			exit();
 		}
@@ -150,7 +150,7 @@
 		<tr>
 			<td><b>Message :</b></td><td width="80%" rows=10 COLS=30>'.$message_trie['Message'].'</td></tr>
 		</table>
-		<p><a href="index.php">Retour à l\'accueil</a> | <a href="index.php?page=messagerie">Retour à la messagerie</a><div class="clearboth"></div>';
+		<p><a href="index.php">Retour à l\'accueil</a> | <a href="index.php?page=messagerie">Retour à la messagerie</a>';
 		display($contenu);
 	}
 	
