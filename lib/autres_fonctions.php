@@ -145,13 +145,13 @@ function getTop10() {
     }
     $first = ($p - 1) * $nb;
     $sql = "SELECT Id,Nom,Argent,Argent_pot FROM joueurs ORDER BY Argent_pot DESC LIMIT $first,$nb";
-    $req = mysql_query($sql)or die("non");
+    $req = mysql_query($sql) or die("non");
     $contenu = '';
-        while ($data = mysql_fetch_assoc($req)) {
-            $first++;
-            $contenu .= '<li><span class="numerotation">'.$first.'</span><span class="pseudo">'.$data['Nom'].'</span><span class="capital">'.$data['Argent_pot'].'</span></li>';
-        }
-        return $contenu;
+    while ($data = mysql_fetch_assoc($req)) {
+        $first++;
+        $contenu .= '<li><span class="numerotation">' . $first . '</span><span class="pseudo">' . $data['Nom'] . '</span><span class="capital">' . $data['Argent_pot'] . '</span></li>';
+    }
+    return $contenu;
 }
 
 function AjaxgetTop10() {
@@ -165,11 +165,11 @@ function AjaxgetTop10() {
     $sql = "SELECT Id,Nom,Argent,Argent_pot FROM joueurs ORDER BY Argent_pot DESC LIMIT $first,$nb";
     $req = mysql_query($sql);
     $contenu = '';
-        while ($data = mysql_fetch_assoc($req)) {
-            $first++;
-            $contenu .= '<li><span class="numerotation">'.$first.'</span><span class="pseudo">'.$data['Nom'].'</span><span class="capital">'.$data['Argent_pot'].'</span></li>';
-        }
-        echo $contenu;
+    while ($data = mysql_fetch_assoc($req)) {
+        $first++;
+        $contenu .= '<li><span class="numerotation">' . $first . '</span><span class="pseudo">' . $data['Nom'] . '</span><span class="capital">' . $data['Argent_pot'] . '</span></li>';
+    }
+    echo $contenu;
 }
 
 function classement() {
@@ -251,26 +251,27 @@ function historique() {
     $contenu = '<center><h2>Historique</h2></center>';
     $contenu .= '<p>Voici un historique de vos 20 dernières transactions.</p>';
     $contenu .= '<table border="0">
-						<tr>
-							<td width="15%" align="center"><b>Date</b></td>
-							<td width="15%" align="center"><b>Nom</b></td>
-							<td width="15%" align="center"><b>Sens</b></td>
-							<td width="15%" align="center"><b>Quantite</b></td>
-							<td width="15%" align="center"><b>Prix Unit</b></td>
-							<td width="10%" align="center">/</td>
-							<td width="15%" align="center"><b>Total</b></td>
-						</tr>';
+                    <tr>
+                            <td width="15%" align="center"><b>Date</b></td>
+                            <td width="15%" align="center"><b>Nom</b></td>
+                            <td width="15%" align="center"><b>Sens</b></td>
+                            <td width="15%" align="center"><b>Quantite</b></td>
+                            <td width="15%" align="center"><b>Prix Unit</b></td>
+                            <td width="10%" align="center">/</td>
+                            <td width="15%" align="center"><b>Total</b></td>
+                    </tr>';
     while ($historique = mysql_fetch_assoc($historique_brut)) {
         $contenu .= '<tr>
-							<td width="15%" align="center">' . $historique['Date'] . '</td>
-							<td width="15%" align="center">' . $historique['Nom'] . '</td>
-							<td width="15%" align="center">' . $historique['Sens'] . '</td>
-							<td width="15%" align="center">' . $historique['Quantite'] . '</td>
-							<td width="15%" align="center">' . $historique['PU'] . '</td>
-							<td width="10%" align="center">/</td>
-							<td width="15%" align="center">' . $historique['Total'] . '</td>
-						</tr>';
+                            <td width="15%" align="center">' . $historique['Date'] . '</td>
+                            <td width="15%" align="center">' . $historique['Nom'] . '</td>
+                            <td width="15%" align="center">' . $historique['Sens'] . '</td>
+                            <td width="15%" align="center">' . $historique['Quantite'] . '</td>
+                            <td width="15%" align="center">' . $historique['PU'] . '</td>
+                            <td width="10%" align="center">/</td>
+                            <td width="15%" align="center">' . $historique['Total'] . '</td>
+                    </tr>';
     }
+    $contenu .= '</table>';
     display($contenu);
 }
 ?>		
