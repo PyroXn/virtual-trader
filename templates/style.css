@@ -347,8 +347,27 @@ input[type=submit] {
     height: 15px;
 }
 
+#form_envoie textarea, #form_envoie input[type=text] {
+    background: #F0F0F0;
+    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(230,230,230)),color-stop(1, rgb(254,254,254)));
+    background-image: -moz-linear-gradient(center bottom,rgb(230,230,230) 0%,rgb(254,254,254) 100%);
+    border: 1px solid #AAA;
+    height: 14px;
+    color: black;
+    font-size: 11px;
+    padding: 6px 5px 5px;
+    margin-top: 10px;
+}
 
+#form_envoie textarea {
+    min-height: 150px;
+    width: 688px;
+    resize: vertical;
+}
 
+#form_envoie input[type=submit] {
+    margin: 10px auto;
+}
 
 
 #bourse {
