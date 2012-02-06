@@ -310,9 +310,28 @@ input[type=submit] {
 }
 
 /***Messagerie***/
+.double_choix {
+    margin-bottom: 15px;
+}
+
+.double_choix span a {
+    margin-left: 140px;
+    color: #194c67;
+    text-decoration: underline;
+}
+
 #messagerie td {
-    width: 150px;
+    width: 175px;
         
+}
+
+#messagerie a {
+    color: blue;
+    text-decoration: underline;
+}
+
+#messagerie .repondre, #messagerie .supprimer {
+    width: 30px;
 }
 
 #messagerie .repondre a, #messagerie .supprimer a {
@@ -327,6 +346,10 @@ input[type=submit] {
     width: 15px;
     height: 15px;
 }
+
+
+
+
 
 #bourse {
     border: none;

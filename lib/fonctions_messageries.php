@@ -12,12 +12,12 @@
 		connect();
 		$liste_message_brut = mysql_query("SELECT * FROM messages WHERE `Destinataire`='".$_SESSION['nom']."' ORDER BY Id DESC");
 		$contenu = '<center><h2>Messagerie</h2></center>';
-		$contenu .= '<p>Voici votre messagerie. Vous pouvez envoyer, consulter et répondre à vos messages privés.
-		<ul>
-			<li><a href="index.php?page=envoyer_message">Envoyer un message</a></li>
-			<li><a href="index.php?page=messagerie">Boite de reception</a></li>
-		</ul>
-		</p>';
+		$contenu .= '<p>Voici votre messagerie. Vous pouvez envoyer, consulter et répondre à vos messages privés.</p>
+                    <div class="double_choix">
+                        <span><a href="index.php?page=envoyer_message">Envoyer un message</a></span>
+                        <span><a href="index.php?page=messagerie">Boite de reception</a></span>
+                    </div>';
+                
 		$contenu .= '                   
                     <table id="messagerie">
                         <tr>
@@ -51,12 +51,11 @@
 		verification();
 		$destinataire = @$_GET['joueurs'];
 		$contenu = '<center><h2>Messagerie</h2></center>';
-		$contenu .= '<p>Voici votre messagerie. Vous pouvez envoyer, consulter et répondre à vos messages privés.
-		<ul>
-			<li><a href="index.php?page=envoyer_message">Envoyer un message</a></li>
-			<li><a href="index.php?page=messagerie">Boite de reception</a></li>
-		</ul>
-		</p>';
+		$contenu .= '<p>Voici votre messagerie. Vous pouvez envoyer, consulter et répondre à vos messages privés.</p>
+                 <div class="double_choix">
+                        <span><a href="index.php?page=envoyer_message">Envoyer un message</a></span>
+                        <span><a href="index.php?page=messagerie">Boite de reception</a></span>
+                    </div>';
 		$contenu .= '<table border="0">
 		<form action="index.php?page=message_envoye" method="post">
 		<tr>
