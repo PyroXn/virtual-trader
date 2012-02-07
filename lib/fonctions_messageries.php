@@ -17,7 +17,7 @@ function messagerie() {
                         <span><a href="index.php?page=envoyer_message">Envoyer un message</a></span>
                         <span><a href="index.php?page=messagerie">Boite de reception</a></span>
                     </div>';
-
+    if(mysql_num_rows($liste_message_brut) > 0) {
     $contenu .= '                   
                     <table id="messagerie">
                         <tr>
@@ -25,6 +25,7 @@ function messagerie() {
                             <td><b>Objet</b></td>
                             <td><b>Etat</b></td>
                         </tr>';
+    }
     while ($liste_message = mysql_fetch_assoc($liste_message_brut)) {
         $contenu .= '<tr>';
         $contenu .= '<td>' . $liste_message['Expediteur'] . '</td>';
