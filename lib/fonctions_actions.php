@@ -1,11 +1,13 @@
 <?php
+
 function resultat_variajour($variation) {
-    if($variation > 0) {
+    if ($variation > 0) {
         return '<td width="20%"><font color="green">+' . round($variation, 2) . '%</font></td>';
     } else {
         return '<td width="20%"><font color="red">' . round($variation, 2) . '%</font></td>';
     }
 }
+
 // Fonction permettant de colorer le taux de variation
 function resultat_variation($variation, $prix_action, $montant_euros) {
     // On multiplie par 100 la variation
@@ -37,7 +39,7 @@ function mes_actions() {
 			<td width="9%"><b>Vendre</b></td>
 		</tr>';
     for ($i = 1; $i <= 40; $i++) {
-        $contenu .= '<tr>';
+
         // Libellé de l'action
         $infos_action = infos_action($i); // On recupere les informations de l'action
         if ($infos_action['Nom'] == '+L&#039;OREAL') {
@@ -45,36 +47,40 @@ function mes_actions() {
         } else {
             $nom_action = $infos_action['Nom'];
         }
-        $contenu .= "<td width='40%'>" . $infos_action['Nom'] . "</td>";
-        // Recuperation du prix d'achat de l'action
-        $contenu .= "<td width='20%'>" . $infos_joueur[$nom_action] . "</td>";
-        // Taux de variation de l'action
-        if ($infos_joueur[$nom_action] <> 0) {          
-            $variation = ($infos_action['Price'] - $infos_joueur[$nom_action]) / $infos_joueur[$nom_action];
-        } else {
-            $variation = 0;
-        }
-        $montant_euros = ($variation * $infos_joueur[$nom_action]);
-
-        // Appel de la fonction pour colorer le resultat de la variation
-        $affichage_variation = resultat_variation($variation, $infos_joueur[$nom_action], $montant_euros);
-        $contenu .= $affichage_variation;
-        // Variation journaliere
-        if ($infos_joueur[$nom_action] <> 0) {
-        $infosAction = infos_action($i);
-        $variaJour = (($infosAction['Price'] - $infosAction['Clot_prec'])/$infosAction['Clot_prec'])*100;
-        $contenu .= resultat_variajour($variaJour);
-        } else {
-            $contenu .= "<td width='20%'>0</td>";
-        }
-        // Recuperation de la quantite d'action
         $action_quantite = $nom_action . "_quantite";
-        $contenu .= "<td width='20%'>" . $infos_joueur[$action_quantite] . "</td>";
-        // Affichage du bouton pour vendre l'action
         if ($infos_joueur[$action_quantite] > 0) {
-            $contenu .= '<td width="9%"><a href="index.php?page=formulaire_vente&actions=' . $i . '&prix=' . $infos_action['Price'] . '">Vendre</a></td>';
+            $contenu .= '<tr>';
+            $contenu .= "<td width='40%'>" . $infos_action['Nom'] . "</td>";
+            // Recuperation du prix d'achat de l'action
+            $contenu .= "<td width='20%'>" . $infos_joueur[$nom_action] . "</td>";
+            // Taux de variation de l'action
+            if ($infos_joueur[$nom_action] <> 0) {
+                $variation = ($infos_action['Price'] - $infos_joueur[$nom_action]) / $infos_joueur[$nom_action];
+            } else {
+                $variation = 0;
+            }
+            $montant_euros = ($variation * $infos_joueur[$nom_action]);
+
+            // Appel de la fonction pour colorer le resultat de la variation
+            $affichage_variation = resultat_variation($variation, $infos_joueur[$nom_action], $montant_euros);
+            $contenu .= $affichage_variation;
+            // Variation journaliere
+            if ($infos_joueur[$nom_action] <> 0) {
+                $infosAction = infos_action($i);
+                $variaJour = (($infosAction['Price'] - $infosAction['Clot_prec']) / $infosAction['Clot_prec']) * 100;
+                $contenu .= resultat_variajour($variaJour);
+            } else {
+                $contenu .= "<td width='20%'>0</td>";
+            }
+            // Recuperation de la quantite d'action
+            $action_quantite = $nom_action . "_quantite";
+            $contenu .= "<td width='20%'>" . $infos_joueur[$action_quantite] . "</td>";
+            // Affichage du bouton pour vendre l'action
+            if ($infos_joueur[$action_quantite] > 0) {
+                $contenu .= '<td width="9%"><a href="index.php?page=formulaire_vente&actions=' . $i . '&prix=' . $infos_action['Price'] . '">Vendre</a></td>';
+            }
+            $contenu .= '</tr>';
         }
-        $contenu .= '</tr>';
     }
     $contenu .= '</table>';
     display($contenu);
@@ -109,27 +115,29 @@ BEGIN;
     $o = 1;
     for ($i = 0; $i < 39; $i++) {
         //mysql_query("INSERT INTO actions SET Nom='".$noms_actions[1][$i]."',Clot_prec='10.70',Price='".$cours_actions[1][$i]."'");
-        /*$cours = preg_replace("/,/",".",$cours_actions[1][$i]);
-        mysql_query("INSERT INTO `actions`(Nom,Clot_prec,Price) VALUES ('".$noms_actions[1][$i]."','".$cours."','".$cours."')");*/
-        if ($i%2 == 0) {
+        /* $cours = preg_replace("/,/",".",$cours_actions[1][$i]);
+          mysql_query("INSERT INTO `actions`(Nom,Clot_prec,Price) VALUES ('".$noms_actions[1][$i]."','".$cours."','".$cours."')"); */
+        if ($i % 2 == 0) {
             $contenu .= '<tr class="pair">';
         } else {
             $contenu .= '<tr class="impair">';
         }
-        
+
         $contenu .= '<td width="40%">' . $noms_actions[1][$i] . '</td>';
         $contenu .= '<td width="20%">' . $cours_actions[1][$i] . '</td>';
         // On recherche les informations de la cloture precedente
-            if($noms_actions[1][$i] == "L&#039;&#039;OREAL") {
-                $noms_actions[1][$i] = "L&#039;OREAL";
-            }
+        if ($noms_actions[1][$i] == "L&#039;&#039;OREAL") {
+            $noms_actions[1][$i] = "L&#039;OREAL";
+        }
         $cloture_precedente = mysql_query("SELECT * FROM `actions` WHERE `Nom`='" . $noms_actions[1][$i] . "'");
         $affichage_cloture = mysql_fetch_assoc($cloture_precedente);
         $valeur_action = str_replace(",", ".", $cours_actions[1][$i]);
         if ($heure >= 19 || $heure <= 8) {
             $update_cloture_precedente = mysql_query("UPDATE actions SET `Clot_prec`='" . $valeur_action . "' WHERE `Nom`='" . $noms_actions[1][$i] . "'");
         }
-        $update_prix = mysql_query("UPDATE actions SET `Price`='" . $valeur_action . "' WHERE Nom='" . $noms_actions[1][$i] . "'");
+        if($valeur_action != 0) {
+            $update_prix = mysql_query("UPDATE actions SET `Price`='" . $valeur_action . "' WHERE Nom='" . $noms_actions[1][$i] . "'");
+        }
         $taux_variation = ($valeur_action - $affichage_cloture['Clot_prec']) / $affichage_cloture['Clot_prec'] * 100;
         if ($taux_variation >= 0) {
             $contenu .= '<td width="20%"><font color="green">+ ' . round($taux_variation, 2) . '%</font></td>';
@@ -199,7 +207,7 @@ function achat() {
     }
     $prix_total = $quantite_action * $infos_action['Price'];
     $action_quantite = $nom_action . '_quantite';
-    
+
     // On met en place les frais
     if ($prix_total < 5000) {
         $total = $prix_total + 5;
