@@ -146,7 +146,7 @@
                         <form action="index.php?page=verification_connexion" method="post">
                             <div><input type="text" placeholder="Identifiant" name="login" id="loginCo"/><span class="error"></span></div>
                             <input type="password" placeholder="Mot de passe" name="mdp" id="pwdCo"/><span class="error"></span>
-                            <a href="" class="mini_texte">Mot de passe oublié ?</a>
+                            <a href="index.php?page=lost_password" class="mini_texte">Mot de passe oublié ?</a>
                             <input type="submit" value="Se connecter" id="submitConnexion" />
                         </form>
                     <?php } ?>

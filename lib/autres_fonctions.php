@@ -127,6 +127,41 @@ function changement_password() {
     display($contenu);
 }
 
+function lostPassword() {
+    if(isset($_POST['lostPassword'])) {
+    connect();
+    $infos_joueur = infos_joueur($_POST['name']);
+    $password = '';
+    for($i=0;$i<6;$i++) {
+        $nb = rand(0,9);
+        $password = $password .''.$nb;
+    }
+    $md5 = md5($password);
+    $sql = 'UPDATE joueurs SET Password="'.$md5.'" WHERE Nom="'.$infos_joueur['Nom'].'"';
+    mysql_query($sql);
+    $contenu = '<center><h2>Mot de passe oublié ?</h2></center>';
+    $contenu .= 'Un e-mail vient de vous être envoyé. Merci de bien vouloir changer de mot de passe lors de votre prochaine connexion.';
+    // Envoi du mail
+    $headers = "From: contact@mydevhouse.com\n";
+    $headers .= "Reply-To: contact@mydevhouse.coml\n";
+    $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+    $message_html = '<html>
+                                    <head></head>
+                                    <body>
+                                       <p>Bonjour, vous avez récement fait une demande pour recevoir un nouveau mot de passe. Votre nouveau mot de passe : <b>'.$password.'</b>. Pensez à le modifier lors de votre prochaine connexion.</p>
+                                           <p>Cordialement, l\'équipe de My Dev House - Createur de Virtual-Trader</p>
+                                     </body>
+                                     </html>';
+    // envois du mail
+    mail($infos_joueur['E-mail'], "Mot de passe oublie - Virtual trader", $message_html, $headers);
+    } else {
+        $contenu = '<center><h2>Mot de passe oublié ?</h2></center>';
+        $contenu .= '<p>Si vous avez perdu votre mot de passe, entrez ci-dessous votre identifiant. Vous recevrez quelques minutes après un e-mail vous informant de votre nouveau mot de passe.</p>';
+        $contenu .= '<form method="POST"><input type="text" name="name" placeholder="Identifiant" /><span><input type="submit" value="Valider" name="lostPassword" /></form>';
+    }
+    display($contenu);
+    
+}
 function supprimer_compte() {
     verification();
     connect();

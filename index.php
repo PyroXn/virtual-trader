@@ -64,6 +64,8 @@ elseif ($page == 'banque') {
     changement_password();
 } elseif ($page == 'supprimer_compte') {
     supprimer_compte();
+} elseif ($page == 'lost_password') {
+    lostPassword();
 }
 // Admin
 elseif ($page == 'accueilAdmin') {
