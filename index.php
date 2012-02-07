@@ -84,7 +84,7 @@ function accueil() {
     $contenu = '<center><h2>Présentation</h2></center>
 			<p>Virtual Trader est un jeu accessible à tous qui vous permet de goûter aux joies et aux frayeurs de la Bourse mais sans le moindre risque.</p>
 
-			<blockquote><p>Achetez, Revendez, Gagnez ou Perdez, peu importe puisque vous ne jouez pas d\'argent réel . Vous démarrez avec un capital de 10.000 € et vous devez réaliser le meilleur bénéfice. Vous figurez dans un classement sur le site de Virtual-Trader pour être confronté aux autres joueurs.</p></blockquote>
+			<blockquote><p>Achetez, Revendez, Gagnez ou Perdez, peu importe puisque vous ne jouez pas d\'argent réel . Vous démarrez avec un capital de 20.000 &euro; et vous devez réaliser le meilleur bénéfice. Vous figurez dans un classement sur le site de Virtual-Trader pour être confronté aux autres joueurs.</p></blockquote>
 			
 			<center><h2>Virtual-Trader c\'est :</h2></center>
 			<p><ul>
