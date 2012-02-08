@@ -1,5 +1,4 @@
 <?php
-
 // Fichier regroupant les autres fonctions (banque, profil, classement)
 function banque() {
     verification();
@@ -77,7 +76,7 @@ function mon_compte() {
     $contenu = '
         <div id="form_envoie" >
             <h2>Mon compte</h2>
-            <p>Si vous le desirez, vous pouvez modifier votre mot de passe, remettre votre compte à zero ou supprimer votre compte.</p>
+            <p>Si vous le desirez, vous pouvez modifier votre mot de passe. Dans le cas où vous souhaiteriez changer de pseudo, merci de bien vouloir utiliser le formulaire de contact.</p>
             <div class="center">
                 <h2>Votre Mot de passe</h2>
                 <form action="index.php?page=changement_password" method="post">
@@ -204,8 +203,8 @@ function AjaxgetTop10() {
 function classement() {
     verification();
     connect();
-    $p = 1;
-    $nb = 2;
+    $p = myclassement();
+    $nb = $_SESSION['classement'];
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
     }
@@ -215,7 +214,7 @@ function classement() {
     $nbJoueur = mysql_num_rows($nbJoueur);
     $contenu = '
         <h2>Classement</h2>
-        <p>Ce classement affiche les 30 joueurs possèdant le Potentiel le plus élevé (<b>Potentiel : Argent + Valeur des actions</b>)</p>
+        <p>Ce classement affiche les joueurs possèdant le Potentiel le plus élevé (<b>Potentiel : Argent + Valeur des actions</b>)</p>
         <div class="contentclassement">
             <table id="bourse">
                 <tr>
@@ -252,7 +251,7 @@ function ajaxclassement() {
     verification();
     connect();
     $p = 1;
-    $nb = 2;
+    $nb = $_SESSION['classement'];
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
     }
@@ -288,10 +287,10 @@ function ajaxclassement() {
 function historique() {
     verification();
     connect();
-    $historique_brut = mysql_query("SELECT Date,Nom,Sens,Quantite,PU,Total,Joueur FROM historique WHERE `Joueur`='" . $_SESSION['nom'] . "' ORDER BY Date DESC LIMIT 20");
+    $historique_brut = mysql_query("SELECT Date,Nom,Sens,Quantite,PU,Total,Joueur FROM historique WHERE `Joueur`='" . $_SESSION['nom'] . "' ORDER BY Date DESC LIMIT 50");
     $contenu = '
         <h2>Historique</h2>
-        <p>Voici un historique de vos 20 dernières transactions.</p>
+        <p>Voici un historique de vos 50 dernières transactions.</p>
         <table id="bourse">
             <tr>
                 <td width="25%"><b>Date</b></td>
@@ -322,5 +321,19 @@ function historique() {
     }
     $contenu .= '</table>';
     display($contenu);
+}
+
+function myclassement() {
+    $nbJoueur = mysql_query("SELECT Id FROM joueurs");
+    $liste_joueur_brut = mysql_query("SELECT Id,Nom,Argent,Argent_pot FROM joueurs ORDER BY Argent_pot DESC");
+    $nbJoueur = mysql_num_rows($nbJoueur);
+    $i = 1;
+    while($liste = mysql_fetch_assoc($liste_joueur_brut)) {
+        if($liste['Nom'] == $_SESSION['nom']) {
+            $pa = ceil($i/$_SESSION['classement']); 
+            return $pa;
+        }
+    }
+    return null;
 }
 ?>		

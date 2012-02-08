@@ -26,8 +26,9 @@ function messagerie() {
                             <td><b>Etat</b></td>
                         </tr>';
     }
+    $i = 1;
     while ($liste_message = mysql_fetch_assoc($liste_message_brut)) {
-        $contenu .= '<tr>';
+        $contenu .= '<tr class="'.$i.'">';
         $contenu .= '<td>' . $liste_message['Expediteur'] . '</td>';
         $contenu .= '<td><a href="index.php?page=afficher_message&id=' . $liste_message['Id'] . '">' . $liste_message['Objet'] . '</a></td>';
         if ($liste_message['Etat'] == 0) {
@@ -36,8 +37,9 @@ function messagerie() {
             $contenu .= '<td class="green">Lu</td>';
         }
         $contenu .= '<td class="repondre"><a title="Répondre" href="index.php?page=envoyer_message&joueurs=' . $liste_message['Expediteur'] . '"></a></td>';
-        $contenu .= '<td class="supprimer"><a title="Supprimer" href="index.php?page=supprimer_message&id=' . $liste_message['Id'] . '"></a></td>';
+        $contenu .= '<td class="supprimer"><a class="deletemessage" title="Supprimer" name="'.$liste_message['Id'].'"></a><span style="display: none;">'.$i.'</span></td>';
         $contenu .= '</tr>';
+        $i++;
     }
     $contenu .= '</table>';
     display($contenu);
@@ -92,18 +94,15 @@ function message_envoye() {
 function supprimer_message() {
     verification();
     connect();
-    $id_a_supprimer = @$_GET['id'];
+    $id_a_supprimer = @$_POST['id'];
     $securisation = mysql_query("SELECT * FROM messages WHERE Id='" . $id_a_supprimer . "' AND Destinataire='" . $_SESSION['nom'] . "'");
     $email = mysql_num_rows($securisation);
     if ($email == 1) {
         mysql_query("DELETE FROM messages WHERE Id='" . $id_a_supprimer . "'");
-        $contenu = '<h2>Messagerie</h2>';
-        $contenu .= 'Message supprimé avec succès.';
+        echo 'Message supprime avec succes.';
     } else {
-        $contenu = '<h2>Tentative de piratage</h2>';
-        $contenu .= 'Tentative de piratage détecté. Votre ID a été transmis à l\'administrateur.';
+       echo 'Tentative de piratage détecté. Votre ID a été transmis à l\'administrateur.';
     }
-    display($contenu);
 }
 
 // Fonction servant à afficher les messages privés

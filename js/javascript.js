@@ -114,7 +114,7 @@ $(function() {
             }
         })
     });
-    
+
     $('.pagina').click(function() {
         var page = $(this).attr('name');
         $('a#currentPagi').removeAttr("id");
@@ -131,4 +131,22 @@ $(function() {
             }
         })
     });
+    
+    $('.deletemessage').click(function() {
+        if(confirm("Confirmer la suppression ?")) {
+        var id = $(this).attr('name');
+        var nb = $(this).next().html();
+        arg = 'id='+id;
+        $.ajax ({
+            type: "POST",
+            data: arg,
+            url : "index.php?page=supprimer_message",
+            success: function(html) {
+                    $('.'+nb).remove();
+                    alert(html);
+            }
+        })
+    }
+    });
+
 });
