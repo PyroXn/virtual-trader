@@ -120,7 +120,7 @@ BEGIN;
     $contenu .= '<td width="9%"><b>Acheter</b></td>';
     $contenu .= '</tr>';
     $o = 1;
-    for ($i = 0; $i < 39; $i++) {
+    for ($i = 0; $i < 40; $i++) {
         //mysql_query("INSERT INTO actions SET Nom='".$noms_actions[1][$i]."',Clot_prec='10.70',Price='".$cours_actions[1][$i]."'");
         /* $cours = preg_replace("/,/",".",$cours_actions[1][$i]);
           mysql_query("INSERT INTO `actions`(Nom,Clot_prec,Price) VALUES ('".$noms_actions[1][$i]."','".$cours."','".$cours."')"); */
