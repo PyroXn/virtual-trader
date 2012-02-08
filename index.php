@@ -109,10 +109,11 @@ function accueil() {
 function formulaire_inscription() {
     $contenu = '<center><h2>Inscription</h2></center>
 		<p>Afin de jouer à Virtual-Trader, merci de bien vouloir remplir ces différents champs.</p>
-                    <form action="index.php?page=verification_inscription" method="post">
+                    <form action="index.php?page=verification_inscription" method="post" class="cadre_bleu">
                         <div><input type="text" name="login" id="login" placeholder="Login"/><span class="error"></span></div>
                         <div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
                         <div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
+                        <input type="checkbox"/><span>En cochant cette case j\'accepte les <a href="">CGU</a> et la politique de confidentialité.</span>
                         <input type="submit" value="Envoyer" id="submitInscription"/>
                     </form>';
     display($contenu);
