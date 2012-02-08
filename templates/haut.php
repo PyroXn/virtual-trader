@@ -44,7 +44,7 @@
                     var nbr = nbr.value;
                     var price = <?php echo str_replace(",", ".", $_GET['prix']); ?>;
                     var prixht = price*nbr;
-                    document.getElementById("prix").innerHTML = prixht;
+                    document.getElementById("prix").value = prixht;
                 }
             </script>
             <?php

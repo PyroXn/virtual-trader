@@ -11,7 +11,7 @@ function messagerie() {
     verification();
     connect();
     $liste_message_brut = mysql_query("SELECT * FROM messages WHERE `Destinataire`='" . $_SESSION['nom'] . "' ORDER BY Id DESC");
-    $contenu = '<center><h2>Messagerie</h2></center>';
+    $contenu = '<h2>Messagerie</h2>';
     $contenu .= '<p>Voici votre messagerie. Vous pouvez envoyer, consulter et répondre à vos messages privés.</p>
                     <div class="double_choix">
                         <span><a href="index.php?page=envoyer_message">Envoyer un message</a></span>

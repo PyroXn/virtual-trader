@@ -370,8 +370,24 @@ input[type=submit] {
     resize: vertical;
 }
 
+/*#form_envoie input[disabled] {
+    color: grey;
+    border: 2px outset;
+}*/
+
 #form_envoie input[type=submit] {
     margin: 10px auto;
+}
+
+#form_envoie #quantite {
+    display: block;
+    margin: 10px auto 0;
+/*    text-align: center;*/
+}
+
+#form_envoie label {
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 

@@ -263,33 +263,24 @@ function formulaire_vente() {
         display($contenu);
         exit();
     }
-    $contenu = '<p>Merci de bien vouloir choisir l\'action et la quantité d\'action que vous désirez.
-					<h2>Choisir l\'action</h2>
-					<form action="index.php?page=vente" method="post" name="form1">
-					<table border="0">
-						<tr>
-							<td>Action :</td><td>
-							<select name="action" style="width:200px;">';
-    $contenu .= '<option value="' . $infos_action['Nom'] . '">' . $infos_action['Nom'] . '</option>';
-    $contenu .= '</select></td></tr>
-					<tr>
-						<td>Quantité possédé :</td><td>' . $quantite_action . '</td>
-					</tr>
-					<tr>
-						<td>Quantite :</td><td><input type="text" name="quantite" size="3" MAXLENGTH="3" onkeyup="CalculPrix(this)"></td>
-					</tr>
-					<tr>
-						<td>Prix :</td><td><b>' . $prix_action . '</b></td>
-					</tr>
-					<tr>
-						<td>Total TTC :</td><td><b><span id="prix"></span></b></td>
-					</tr>
-					<input type="hidden" name="id" value="' . $infos_action['Id'] . '">
-					<tr>
-						<td></td><td><input type="submit" value="Envoyer"></td>
-					</tr>
-					</table>
-					</form></p>';
+    $contenu = '
+        <p>Merci de bien vouloir choisir l\'action et la quantité d\'action que vous désirez.
+        <h2>Choisir l\'action</h2>
+        <form id="form_envoie" action="index.php?page=vente" method="post" name="form1">
+            <div>
+                <span><label>Action :</label><input disabled type="text" name="action" value="' . $infos_action['Nom'] . '"></span>
+                <span class="colonne_droite"><label>Quantité possédé :</label><input disabled type="text" value="' . $quantite_action . '"></span>
+            </div>
+            <input type="text" id="quantite" name="quantite" placeholder="Quantité à vendre" onkeyup="CalculPrix(this)">
+            <div>
+                <span><label>Prix :</label><input disabled type="text" value ="' . $prix_action . '"></span>
+                <span class="colonne_droite"><label>Total TTC :</label><input disabled type="text" id="prix" ></span>
+            </div>
+            
+            
+            <input type="hidden" name="id" value="' . $infos_action['Id'] . '">
+            <input type="submit" value="Vendre">
+	</form>';
     display($contenu);
 }
 
