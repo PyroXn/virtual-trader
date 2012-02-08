@@ -427,6 +427,11 @@ input[type=submit] {
     background-color: #ebebeb;
 }
 
+.ligne_perso {
+    
+    font-style: italic;
+}
+
 
 #pass_oublie h2 {
     text-align: center;

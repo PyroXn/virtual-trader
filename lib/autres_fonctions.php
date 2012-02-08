@@ -203,7 +203,9 @@ function AjaxgetTop10() {
 function classement() {
     verification();
     connect();
-    $p = myclassement();
+    $myClassement = myclassement();
+    $p = ceil($myClassement/$_SESSION['classement']);
+    echo $p;
     $nb = $_SESSION['classement'];
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
@@ -225,9 +227,9 @@ function classement() {
                 </tr>';
     while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {
         if ($first % 2 == 0) {
-            $contenu .= '<tr class="pair">';
+            $myClassement == $first+1 ? $contenu .= '<tr class="pair ligne_perso">' : $contenu .= '<tr class="pair">';
         } else {
-            $contenu .= '<tr class="impair">';
+            $myClassement == $first+1 ? $contenu .= '<tr class="impair ligne_perso">' : $contenu .= '<tr class="impair">';
         }
         $first++;
         $contenu .= '
@@ -324,15 +326,16 @@ function historique() {
 }
 
 function myclassement() {
-    $nbJoueur = mysql_query("SELECT Id FROM joueurs");
+//    $nbJoueur = mysql_query("SELECT Id FROM joueurs");
     $liste_joueur_brut = mysql_query("SELECT Id,Nom,Argent,Argent_pot FROM joueurs ORDER BY Argent_pot DESC");
-    $nbJoueur = mysql_num_rows($nbJoueur);
+    $nbJoueur = mysql_num_rows($liste_joueur_brut);
     $i = 1;
     while($liste = mysql_fetch_assoc($liste_joueur_brut)) {
         if($liste['Nom'] == $_SESSION['nom']) {
-            $pa = ceil($i/$_SESSION['classement']); 
-            return $pa;
+//            $pa = ceil($i/$_SESSION['classement']); 
+            return $i;
         }
+        $i++;
     }
     return null;
 }
