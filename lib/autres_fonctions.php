@@ -77,7 +77,7 @@ function mon_compte() {
     $contenu = '
         <div id="form_envoie" >
             <h2>Mon compte</h2>
-            <p>Si vous le desirez, vous pouvez modifier votre mot de passe, remettre votre compte à zero ou supprimer votre compte.</p>
+            <p>Si vous le desirez, vous pouvez modifier votre mot de passe. Dans le cas où vous souhaiteriez changer de pseudo, merci de bien vouloir utiliser le formulaire de contact.</p>
             <div class="center">
                 <h2>Votre Mot de passe</h2>
                 <form action="index.php?page=changement_password" method="post">
@@ -288,10 +288,10 @@ function ajaxclassement() {
 function historique() {
     verification();
     connect();
-    $historique_brut = mysql_query("SELECT Date,Nom,Sens,Quantite,PU,Total,Joueur FROM historique WHERE `Joueur`='" . $_SESSION['nom'] . "' ORDER BY Date DESC LIMIT 20");
+    $historique_brut = mysql_query("SELECT Date,Nom,Sens,Quantite,PU,Total,Joueur FROM historique WHERE `Joueur`='" . $_SESSION['nom'] . "' ORDER BY Date DESC LIMIT 50");
     $contenu = '
         <h2>Historique</h2>
-        <p>Voici un historique de vos 20 dernières transactions.</p>
+        <p>Voici un historique de vos 50 dernières transactions.</p>
         <table id="bourse">
             <tr>
                 <td width="25%"><b>Date</b></td>
