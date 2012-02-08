@@ -80,6 +80,10 @@ elseif ($page == 'ajaxclassement') {
 } elseif ($page == 'classementajax') {
     ajaxclassement();
 }
+
+//VARIABLES
+$_SESSION['classement'] = 50; // Nombre par page
+
 function accueil() {
     $contenu = '<center><h2>Présentation</h2></center>
 			<p>Virtual Trader est un jeu accessible à tous qui vous permet de goûter aux joies et aux frayeurs de la Bourse mais sans le moindre risque.</p>
@@ -88,10 +92,10 @@ function accueil() {
 			
 			<center><h2>Virtual-Trader c\'est :</h2></center>
 			<p><ul>
-					<li>Un jeu à la fois palpitant et instructif</li>
-					<li>20.000 &euro; virtuel à faire fructifier</li>
-					<li>Une mise à jour des valeurs et du classement en temps réel !</li>
-					<li>Et bien d\'autres choses à découvrir</li>
+					<li>- Un jeu à la fois palpitant et instructif</li>
+					<li>- 20.000 &euro; virtuel à faire fructifier</li>
+					<li>- Une mise à jour des valeurs et du classement en temps réel !</li>
+					<li>- Et bien d\'autres choses à découvrir</li>
 				</ul>
 			</p>
 			<center><h2>Screenshot</h2></center>
