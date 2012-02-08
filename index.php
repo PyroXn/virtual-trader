@@ -82,7 +82,8 @@ elseif ($page == 'ajaxclassement') {
 }
 
 //VARIABLES
-$_SESSION['classement'] = 2; // Nombre par page
+$_SESSION['classement'] = 3; // Nombre par page
+
 
 function accueil() {
     $contenu = '<center><h2>Présentation</h2></center>
