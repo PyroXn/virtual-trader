@@ -125,9 +125,9 @@ $(function() {
             data: pa,
             url : "index.php?page=classementajax",
             success: function(html) {
-                $("#classement").remove();
-                $("#class").append(html);
-                $("#class").fadeIn("slow");
+                $("#bourse").remove();
+                $(".contentclassement").html(html);
+
             }
         })
     });

@@ -104,7 +104,7 @@ function changement_password() {
         display($contenu);
         exit();
     } elseif (md5($_POST['vieu']) != $infos_joueur['Password']) {
-        $contenu = 'Votre ancien mot de passe ne correspond pas.';
+        $contenu = 'Mot de passe incorrect.';
         display($contenu);
         exit();
     }
@@ -216,7 +216,7 @@ function classement() {
     $contenu = '
         <h2>Classement</h2>
         <p>Ce classement affiche les 30 joueurs possèdant le Potentiel le plus élevé (<b>Potentiel : Argent + Valeur des actions</b>)</p>
-        <div>
+        <div class="contentclassement">
             <table id="bourse">
                 <tr>
                     <td width="10%"></td>
@@ -252,7 +252,7 @@ function ajaxclassement() {
     verification();
     connect();
     $p = 1;
-    $nb = 20;
+    $nb = 2;
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
     }
