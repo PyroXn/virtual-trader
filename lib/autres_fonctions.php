@@ -205,7 +205,6 @@ function classement() {
     connect();
     $myClassement = myclassement();
     $p = ceil($myClassement/$_SESSION['classement']);
-    echo $p;
     $nb = $_SESSION['classement'];
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
@@ -217,7 +216,7 @@ function classement() {
     $contenu = '
         <h2>Classement</h2>
         <p>Ce classement affiche les joueurs possèdant le Potentiel le plus élevé (<b>Potentiel : Argent + Valeur des actions</b>)</p>
-        
+        <div class="contentclassement">
             <table id="bourse">
                 <tr>
                     <td width="10%"></td>
@@ -239,7 +238,7 @@ function classement() {
                     <td>' . $liste_joueur['Argent_pot'] . '</td>
                 </tr>';
     }
-    $contenu .= '</table>';
+    $contenu .= '</table></div>';
     // calcul du nombre de page
     $nbPage = ceil($nbJoueur / $nb);
     $contenu .= 'Page : ';

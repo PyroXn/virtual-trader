@@ -396,7 +396,7 @@ input[type=submit] {
     border-spacing: 0;
     width: 700px;
     text-align: center;
-    font-size: 12px;
+
 }
 
 #bourse tr {
@@ -430,7 +430,8 @@ input[type=submit] {
 
 .ligne_perso {
     
-   background-color: #ffccf4;
+   background-color: #ffddf7;
+   font-weight: bold;
 }
 
 
