@@ -2,9 +2,9 @@
 
 function resultat_variajour($variation) {
     if ($variation > 0) {
-        return '<td width="20%"><font color="green">+' . round($variation, 2) . '%</font></td>';
+        return '<td class="green">+' . round($variation, 2) . '%</td>';
     } else {
-        return '<td width="20%"><font color="red">' . round($variation, 2) . '%</font></td>';
+        return '<td class="red">' . round($variation, 2) . '%</td>';
     }
 }
 
@@ -13,13 +13,13 @@ function resultat_variation($variation, $prix_action, $montant_euros) {
     // On multiplie par 100 la variation
     $varia = $variation * 100;
     if ($variation > 0 && $prix_action > 0) {
-        $affichage = '<td width="20%"><font color="green">+' . round($varia, 2) . '% / +' . round($montant_euros, 2) . '&#1108;</font></td>';
+        $affichage = '<td class="green">+' . round($varia, 2) . '% / +' . round($montant_euros, 2) . '&#1108;</td>';
     } elseif ($variation > 0 && $prix_action < 0) {
-        $affichage = '<td width="20%">0 / 0</td>';
+        $affichage = '<td>0 / 0</td>';
     } elseif ($variation < 0 && $prix_action > 0) {
-        $affichage = '<td width="20%"><font color="red">' . round($varia, 2) . '% / ' . round($montant_euros, 2) . '&#1108;</font></td>';
+        $affichage = '<td class="red">' . round($varia, 2) . '% / ' . round($montant_euros, 2) . '&#1108;</td>';
     } else {
-        $affichage = '<td width="20%">0 / 0</td>';
+        $affichage = '<td>0 / 0</td>';
     }
     return($affichage);
 }
@@ -28,18 +28,20 @@ function mes_actions() {
     verification();
     connect();
     $infos_joueur = infos_joueur($_SESSION['nom']);
-    $contenu = '<center><h2>Vos actions</h2></center>';
-    $contenu .= '<table border="0">
-		<tr>
-			<td width="40%"><b>Libellé</b></td>
-			<td width="17%"><b>Prix achat</b></td>
-			<td width="17%"><b>Varia/Euros</b></td>
-                                                      <td width="17%"><b>Varia Journaliere</b></td>
-			<td width="17%"><b>Quantite</b></td>
-			<td width="9%"><b>Vendre</b></td>
-		</tr>';
+    $contenu = '
+        <h2>Vos actions</h2>
+        <table id="bourse"> 
+            <tr>
+                <td width="30%"><b>Libellé</b></td>
+                <td width="10%"><b>Prix achat</b></td>
+                <td width="23%"><b>Varia/Euros</b></td>
+                <td width="17%"><b>Varia Journaliere</b></td>
+                <td width="10%"><b>Quantite</b></td>
+                <td width="10%"><b>Vendre</b></td>
+            </tr>';
+    $j = 0;
     for ($i = 1; $i <= 40; $i++) {
-
+        
         // Libellé de l'action
         $infos_action = infos_action($i); // On recupere les informations de l'action
         if ($infos_action['Nom'] == '+L&#039;OREAL') {
@@ -49,10 +51,15 @@ function mes_actions() {
         }
         $action_quantite = $nom_action . "_quantite";
         if ($infos_joueur[$action_quantite] > 0) {
-            $contenu .= '<tr>';
-            $contenu .= "<td width='40%'>" . $infos_action['Nom'] . "</td>";
+            if ($j % 2 == 0) {
+                $contenu .= '<tr class="pair">';
+            } else {
+                $contenu .= '<tr class="impair">';
+            }
+            $j++;
+            $contenu .= "<td>" . $infos_action['Nom'] . "</td>";
             // Recuperation du prix d'achat de l'action
-            $contenu .= "<td width='20%'>" . $infos_joueur[$nom_action] . "</td>";
+            $contenu .= "<td>" . $infos_joueur[$nom_action] . "</td>";
             // Taux de variation de l'action
             if ($infos_joueur[$nom_action] <> 0) {
                 $variation = ($infos_action['Price'] - $infos_joueur[$nom_action]) / $infos_joueur[$nom_action];
@@ -70,14 +77,14 @@ function mes_actions() {
                 $variaJour = (($infosAction['Price'] - $infosAction['Clot_prec']) / $infosAction['Clot_prec']) * 100;
                 $contenu .= resultat_variajour($variaJour);
             } else {
-                $contenu .= "<td width='20%'>0</td>";
+                $contenu .= "<td>0</td>";
             }
             // Recuperation de la quantite d'action
             $action_quantite = $nom_action . "_quantite";
-            $contenu .= "<td width='20%'>" . $infos_joueur[$action_quantite] . "</td>";
+            $contenu .= "<td>" . $infos_joueur[$action_quantite] . "</td>";
             // Affichage du bouton pour vendre l'action
             if ($infos_joueur[$action_quantite] > 0) {
-                $contenu .= '<td width="9%"><a href="index.php?page=formulaire_vente&actions=' . $i . '&prix=' . $infos_action['Price'] . '">Vendre</a></td>';
+                $contenu .= '<td><a href="index.php?page=formulaire_vente&actions=' . $i . '&prix=' . $infos_action['Price'] . '">Vendre</a></td>';
             }
             $contenu .= '</tr>';
         }
@@ -123,8 +130,8 @@ BEGIN;
             $contenu .= '<tr class="impair">';
         }
 
-        $contenu .= '<td width="40%">' . $noms_actions[1][$i] . '</td>';
-        $contenu .= '<td width="20%">' . $cours_actions[1][$i] . '</td>';
+        $contenu .= '<td>' . $noms_actions[1][$i] . '</td>';
+        $contenu .= '<td>' . $cours_actions[1][$i] . '</td>';
         // On recherche les informations de la cloture precedente
         if ($noms_actions[1][$i] == "L&#039;&#039;OREAL") {
             $noms_actions[1][$i] = "L&#039;OREAL";
@@ -140,12 +147,12 @@ BEGIN;
         }
         $taux_variation = ($valeur_action - $affichage_cloture['Clot_prec']) / $affichage_cloture['Clot_prec'] * 100;
         if ($taux_variation >= 0) {
-            $contenu .= '<td width="20%"><font color="green">+ ' . round($taux_variation, 2) . '%</font></td>';
+            $contenu .= '<td class="green">+ ' . round($taux_variation, 2) . '%</td>';
         } else {
-            $contenu .= '<td width="20%"><font color="red"> ' . round($taux_variation, 2) . '%</font></td>';
+            $contenu .= '<td class="red"> ' . round($taux_variation, 2) . '%</td>';
         }
-        $contenu .= '<td width="20%">' . $affichage_cloture['Clot_prec'] . '</td>';
-        $contenu .= '<td width="9%"><a href="index.php?page=formulaire_achat&actions=' . $o . '&prix=' . $cours_actions[1][$i] . '">Acheter</a></td>';
+        $contenu .= '<td>' . $affichage_cloture['Clot_prec'] . '</td>';
+        $contenu .= '<td><a href="index.php?page=formulaire_achat&actions=' . $o . '&prix=' . $cours_actions[1][$i] . '">Acheter</a></td>';
         $o++;
     }
     $contenu .= '</tr>';

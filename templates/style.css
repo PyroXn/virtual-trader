@@ -399,6 +399,10 @@ input[type=submit] {
     border-bottom: 1px dotted #9D9D9D;
 }
 
+#bourse a {
+    color: blue;
+}
+
 .pair {
     background-color: #e2e9f1;
 }
