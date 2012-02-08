@@ -396,6 +396,7 @@ input[type=submit] {
     border-spacing: 0;
     width: 700px;
     text-align: center;
+    font-size: 12px;
 }
 
 #bourse tr {
