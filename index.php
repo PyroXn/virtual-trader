@@ -104,12 +104,12 @@ function accueil() {
 function formulaire_inscription() {
     $contenu = '<center><h2>Inscription</h2></center>
 		<p>Afin de jouer à Virtual-Trader, merci de bien vouloir remplir ces différents champs.</p>
-			<form action="index.php?page=verification_inscription" method="post">
+                    <form action="index.php?page=verification_inscription" method="post">
                         <div><input type="text" name="login" id="login" placeholder="Login"/><span class="error"></span></div>
-<div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
-<div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
-<input type="submit" value="Envoyer" id="submitInscription"/>
-			</form>';
+                        <div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
+                        <div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
+                        <input type="submit" value="Envoyer" id="submitInscription"/>
+                    </form>';
     display($contenu);
 }
 
@@ -135,41 +135,31 @@ function verification_connexion() {
 				  </script>';
     } elseif ($resultat == 2) {
         $contenu = "<h2>Erreur !</h2>
-						<p>Votre compte n'a pas encore été validé par les administrateurs.</p>";
+                <p>Votre compte n'a pas encore été validé par les administrateurs.</p>";
         display($contenu);
     } else {
         $contenu = "<h2>Erreur !</h2>
-						<p>Login ou mot de passe incorrect.</p>";
+                <p>Login ou mot de passe incorrect.</p>";
         display($contenu);
     }
 }
 
 function formulaire_contact() {
-    $contenu = '<center><h2>Contact</h2></center>
-			Un problème ? Une question ? N\'hésitez pas à nous contacter.
-			
-			<table border="0">
-			<form action="index.php?page=verification_contact" method="post">
-			<tr>
-				<td>Nom :</td><td><input type="text" name="nom"></td>
-			</tr>
-			<tr>
-				<td>Prenom :</td><td><input type="text" name="prenom"></td>
-			</tr>
-			<tr>
-				<td>E-mail :</td><td><input type="text" name="email"></td>
-			</tr>
-			<tr>
-				<td>Sujet :</td><td><input type="text" name="sujet"></td>
-			</tr>
-			<tr>
-				<td>Message :</td><td><textarea name="message"></textarea></td>
-			</tr>
-			<tr>
-				<td></td><td><input type="submit" name="envoyer" value="Envoyer"></td>
-			</tr>
-			</form>
-			</table>';
+    $contenu = '
+        <div id="form_envoie">
+            <h2>Contact</h2>
+            <p>Un problème ? Une question ? N\'hésitez pas à nous contacter.</p>
+
+            <form action="index.php?page=verification_contact" method="post">
+                <input type="text" name="nom" placeholder="Nom">
+                <input type="text" name="prenom" placeholder="Prenom">
+                <input type="text" name="email" placeholder="E-mail">
+                <input type="text" name="sujet" placeholder="Sujet">
+                <textarea name="message" placeholder="Message"></textarea>
+                <input type="submit" name="envoyer" value="Envoyer">
+            </form>
+        </div>
+			';
     display($contenu);
 }
 

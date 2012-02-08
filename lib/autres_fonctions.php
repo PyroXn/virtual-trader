@@ -74,32 +74,20 @@ function mon_compte() {
     verification();
     connect();
     $infos_joueur = infos_joueur($_SESSION['nom']);
-    $contenu = '<center><h2>Mon compte</h2></center>';
-    $contenu .='<p>Si vous le desirez, vous pouvez modifier votre mot de passe, remettre votre compte à zero ou supprimer votre compte.
-		<h2>Votre Mot de passe</h2>
-		<table border="0">
-		<form action="index.php?page=changement_password" method="post">
-		<tr>
-			<td>Ancien Mot de passe :</td><td><input type="password" name="vieu"></td>
-		</tr>
-		<tr>
-			<td>Nouveau Mot de passe :</td><td><input type="password" name="new"></td>
-		</tr>
-		<tr>
-			<td>Retapez le Mot de passe :</td><td><input type="password" name="new2"></td>
-		</tr>
-		<tr>
-			<td><input type="submit" name="mdp" value="Envoyer"></td><td><input type="reset" name="reset" value="Effacer"></td>
-		</tr>
-		</form>
-		</table></p>';
-//		<p><h2>Supprimer votre compte</h2>
-//		<table border="0">
-//		<tr>
-//			<td>Fonctionnalité retiré.</td>
-//		</tr>
-//		</table>
-//		</p>
+    $contenu = '
+        <div id="form_envoie" >
+            <h2>Mon compte</h2>
+            <p>Si vous le desirez, vous pouvez modifier votre mot de passe, remettre votre compte à zero ou supprimer votre compte.</p>
+            <div class="center">
+                <h2>Votre Mot de passe</h2>
+                <form action="index.php?page=changement_password" method="post">
+                    <input type="password" name="vieu" placeholder="Ancien mot de passe">
+                    <input type="password" name="new" placeholder="Nouveau mot de passe">
+                    <input type="password" name="new2" placeholder="Retapez le mot de passe">
+                    <input type="submit" name="mdp" value="Envoyer">
+                </form>
+            </div>
+        </div>';
     display($contenu);
 }
 
@@ -155,9 +143,15 @@ function lostPassword() {
     // envois du mail
     mail($infos_joueur['E-mail'], "Mot de passe oublie - Virtual trader", $message_html, $headers);
     } else {
-        $contenu = '<center><h2>Mot de passe oublié ?</h2></center>';
-        $contenu .= '<p>Si vous avez perdu votre mot de passe, entrez ci-dessous votre identifiant. Vous recevrez quelques minutes après un e-mail vous informant de votre nouveau mot de passe.</p>';
-        $contenu .= '<form method="POST"><input type="text" name="name" placeholder="Identifiant" /><span><input type="submit" value="Valider" name="lostPassword" /></form>';
+        $contenu = '
+            <div id="pass_oublie">
+                <h2>Mot de passe oublié ?</h2>
+                <p>Si vous avez perdu votre mot de passe, entrez ci-dessous votre identifiant. Vous recevrez quelques minutes après un e-mail vous informant de votre nouveau mot de passe.</p>
+                <form method="POST">
+                    <input type="text" name="name" placeholder="Identifiant" />
+                    <input type="submit" value="OK" name="lostPassword" />
+                </form>
+            </div>';
     }
     display($contenu);
     
@@ -211,7 +205,7 @@ function classement() {
     verification();
     connect();
     $p = 1;
-    $nb = 20;
+    $nb = 2;
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
     }
@@ -219,23 +213,30 @@ function classement() {
     $nbJoueur = mysql_query("SELECT Id FROM joueurs");
     $liste_joueur_brut = mysql_query("SELECT Id,Nom,Argent,Argent_pot FROM joueurs ORDER BY Argent_pot DESC LIMIT $first,$nb");
     $nbJoueur = mysql_num_rows($nbJoueur);
-    $contenu = '<center><h2>Classement</h2></center>';
-    $contenu .= '<p>Ce classement affiche les 30 joueurs possèdant le Potentiel le plus élevé (<b>Potentiel : Argent + Valeur des actions</b>)</p>
-					<div id="class"><table id="classement" border="0">
-						<tr>
-							<td width="10%"><b>ID</b></td>
-							<td width="30%"><b>Nom</b></td>
-							<td width="30%"><b>Argent</b></td>
-							<td width="30%"><b>Potentiel</b></td>
-						</tr>';
+    $contenu = '
+        <h2>Classement</h2>
+        <p>Ce classement affiche les 30 joueurs possèdant le Potentiel le plus élevé (<b>Potentiel : Argent + Valeur des actions</b>)</p>
+        <div>
+            <table id="bourse">
+                <tr>
+                    <td width="10%"></td>
+                    <td width="30%"><b>Nom</b></td>
+                    <td width="30%"><b>Argent</b></td>
+                    <td width="30%"><b>Potentiel</b></td>
+                </tr>';
     while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {
+        if ($first % 2 == 0) {
+            $contenu .= '<tr class="pair">';
+        } else {
+            $contenu .= '<tr class="impair">';
+        }
         $first++;
-        $contenu .= '<tr>
-							<td width="10%">' . $first . '</td>
-							<td width="30%">' . $liste_joueur['Nom'] . '</td>
-							<td width="30%">' . $liste_joueur['Argent'] . '</td>
-							<td width="30%">' . $liste_joueur['Argent_pot'] . '</td>
-						</tr>';
+        $contenu .= '
+                    <td>' . $first . '</td>
+                    <td>' . $liste_joueur['Nom'] . '</td>
+                    <td>' . $liste_joueur['Argent'] . '</td>
+                    <td>' . $liste_joueur['Argent_pot'] . '</td>
+                </tr>';
     }
     $contenu .= '</table></div>';
     // calcul du nombre de page
@@ -259,21 +260,26 @@ function ajaxclassement() {
     $nbJoueur = mysql_query("SELECT Id FROM joueurs");
     $liste_joueur_brut = mysql_query("SELECT Id,Nom,Argent,Argent_pot FROM joueurs ORDER BY Argent_pot DESC LIMIT $first,$nb");
     $nbJoueur = mysql_num_rows($nbJoueur);
-    $contenu = '<table id="classement" border="0">
-						<tr>
-							<td width="10%"><b>ID</b></td>
-							<td width="30%"><b>Nom</b></td>
-							<td width="30%"><b>Argent</b></td>
-							<td width="30%"><b>Potentiel</b></td>
-						</tr>';
+    $contenu = '<table id="bourse">
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="30%"><b>Nom</b></td>
+                        <td width="30%"><b>Argent</b></td>
+                        <td width="30%"><b>Potentiel</b></td>
+                    </tr>';
     while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {
         $first++;
-        $contenu .= '<tr class="noeud">
-							<td width="10%">' . $first . '</td>
-							<td width="30%">' . $liste_joueur['Nom'] . '</td>
-							<td width="30%">' . $liste_joueur['Argent'] . '</td>
-							<td width="30%">' . $liste_joueur['Argent_pot'] . '</td>
-						</tr>';
+        if ($first % 2 == 0) {
+            $contenu .= '<tr class="pair">';
+        } else {
+            $contenu .= '<tr class="impair">';
+        }
+        $contenu .= '
+                    <td>' . $first . '</td>
+                    <td>' . $liste_joueur['Nom'] . '</td>
+                    <td>' . $liste_joueur['Argent'] . '</td>
+                    <td>' . $liste_joueur['Argent_pot'] . '</td>
+            </tr>';
     }
     $contenu .= '</table>';
     echo $contenu;
@@ -283,28 +289,36 @@ function historique() {
     verification();
     connect();
     $historique_brut = mysql_query("SELECT Date,Nom,Sens,Quantite,PU,Total,Joueur FROM historique WHERE `Joueur`='" . $_SESSION['nom'] . "' ORDER BY Date DESC LIMIT 20");
-    $contenu = '<center><h2>Historique</h2></center>';
-    $contenu .= '<p>Voici un historique de vos 20 dernières transactions.</p>';
-    $contenu .= '<table border="0">
-                    <tr>
-                            <td width="15%" align="center"><b>Date</b></td>
-                            <td width="15%" align="center"><b>Nom</b></td>
-                            <td width="15%" align="center"><b>Sens</b></td>
-                            <td width="15%" align="center"><b>Quantite</b></td>
-                            <td width="15%" align="center"><b>Prix Unit</b></td>
-                            <td width="10%" align="center">/</td>
-                            <td width="15%" align="center"><b>Total</b></td>
-                    </tr>';
+    $contenu = '
+        <h2>Historique</h2>
+        <p>Voici un historique de vos 20 dernières transactions.</p>
+        <table id="bourse">
+            <tr>
+                <td width="25%"><b>Date</b></td>
+                <td width="25%"><b>Nom</b></td>
+                <td width="17%"><b>Sens</b></td>
+                <td width="11%"><b>Quantite</b></td>
+                <td width="11%"><b>Prix Unit</b></td>
+                <td width="11%"><b>Total</b></td>
+            </tr>';
+    $i = 0;
     while ($historique = mysql_fetch_assoc($historique_brut)) {
-        $contenu .= '<tr>
-                            <td width="15%" align="center">' . $historique['Date'] . '</td>
-                            <td width="15%" align="center">' . $historique['Nom'] . '</td>
-                            <td width="15%" align="center">' . $historique['Sens'] . '</td>
-                            <td width="15%" align="center">' . $historique['Quantite'] . '</td>
-                            <td width="15%" align="center">' . $historique['PU'] . '</td>
-                            <td width="10%" align="center">/</td>
-                            <td width="15%" align="center">' . $historique['Total'] . '</td>
-                    </tr>';
+        if ($i % 2 == 0) {
+            $contenu .= '<tr class="pair">';
+        } else {
+            $contenu .= '<tr class="impair">';
+        }
+        $date = new DateTime($historique['Date']);
+        $contenu .= '
+            <td>' . $date->format("H:i:s d/m/Y") . '</td>
+            <td>' . $historique['Nom'] . '</td>';
+        $historique['Sens'] == "Achat" ? $contenu .= '<td class="red">' . $historique['Sens'] . '</td>' : $contenu .= '<td class="green">' . $historique['Sens'] . '</td>';
+        $contenu .= '
+            <td>' . $historique['Quantite'] . '</td>
+            <td>' . $historique['PU'] . '</td>
+            <td>' . $historique['Total'] . '</td>
+        </tr>';
+        $i++;
     }
     $contenu .= '</table>';
     display($contenu);

@@ -103,7 +103,7 @@ BEGIN;
 
     preg_match_all(trim($pattern_nom), $code, $noms_actions);
     preg_match_all(trim($pattern_indice), $code, $cours_actions);
-    $contenu = '<center><h2>Les cours de la bourse</h2></center>';
+    $contenu = '<h2>Les cours de la bourse</h2>';
     $contenu .= '<table id="bourse">';
     $contenu .= '<tr>';
     $contenu .= '<td width="40%"><b>Libellé </b></td>';

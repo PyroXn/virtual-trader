@@ -31,9 +31,9 @@ function messagerie() {
         $contenu .= '<td>' . $liste_message['Expediteur'] . '</td>';
         $contenu .= '<td><a href="index.php?page=afficher_message&id=' . $liste_message['Id'] . '">' . $liste_message['Objet'] . '</a></td>';
         if ($liste_message['Etat'] == 0) {
-            $contenu .= '<td><b><font color="red">Non lu</font></b></td>';
+            $contenu .= '<td class="red">Non lu</td>';
         } else {
-            $contenu .= '<td><b><font color="green">Lu</font></b></td>';
+            $contenu .= '<td class="green">Lu</td>';
         }
         $contenu .= '<td class="repondre"><a title="Répondre" href="index.php?page=envoyer_message&joueurs=' . $liste_message['Expediteur'] . '"></a></td>';
         $contenu .= '<td class="supprimer"><a title="Supprimer" href="index.php?page=supprimer_message&id=' . $liste_message['Id'] . '"></a></td>';

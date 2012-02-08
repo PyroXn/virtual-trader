@@ -159,8 +159,13 @@ p {
     color: #194C67;
 }
 
-.connexion .red {
+.red {
     color: #b51500;
+    font-weight: bold;
+}
+
+.green {
+    color: #2fb500;
     font-weight: bold;
 }
 
@@ -347,7 +352,7 @@ input[type=submit] {
     height: 15px;
 }
 
-#form_envoie textarea, #form_envoie input[type=text] {
+#form_envoie textarea, #form_envoie input[type=text], #form_envoie input[type=password] {
     background: #F0F0F0;
     background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(230,230,230)),color-stop(1, rgb(254,254,254)));
     background-image: -moz-linear-gradient(center bottom,rgb(230,230,230) 0%,rgb(254,254,254) 100%);
@@ -373,14 +378,25 @@ input[type=submit] {
 #bourse {
     border: none;
     border-spacing: 0;
+    width: 700px;
+    text-align: center;
 }
 
 #bourse tr {
     height: 26px;
+   
+}
+
+#bourse tr:hover {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 #bourse td {
-    border: none;
+/*    border: none;*/
+     padding-bottom: 2px;
+    border-bottom: 1px dotted #9D9D9D;
 }
 
 .pair {
@@ -390,3 +406,31 @@ input[type=submit] {
 .impair {
     background-color: #ebebeb;
 }
+
+
+#pass_oublie h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#pass_oublie form {
+    text-align: center;
+}
+
+#pass_oublie input[type=text], #pass_oublie input[type=submit] {
+    display: inline;
+    margin: 10px 2px;
+    vertical-align: middle;
+}
+
+#pass_oublie input[type=submit] {
+    width: 35px;
+    height: 29px;
+    font-size: 11px;
+}
+
+.center {
+    text-align: center;
+}
+
+
