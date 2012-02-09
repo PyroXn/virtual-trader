@@ -437,6 +437,10 @@ input[type=radio] {
     color: black;
 }
 
+#bourse .pseudo img {
+    vertical-align: middle;
+}
+
 .pair {
     background-color: #e2e9f1;
 }

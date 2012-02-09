@@ -235,7 +235,7 @@ function classement() {
         
         $contenu .= '
                     <td>' . $first . '</td>
-                    <td><a class="pseudo" href="index.php?page=envoyer_message&joueurs=' . $liste_joueur['Nom'] . '">' . $liste_joueur['Nom'] . '</a></td>
+                    <td><a class="pseudo" href="index.php?page=envoyer_message&joueurs=' . $liste_joueur['Nom'] . '">' . $liste_joueur['Nom'] . ' <img src="./templates/img/mail16x16.png"></a></td>
                     <td>' . $liste_joueur['Argent'] . '</td>
                     <td>' . $liste_joueur['Argent_pot'] . '</td>
                 </tr>';
