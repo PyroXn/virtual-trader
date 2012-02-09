@@ -380,14 +380,18 @@ input[type=submit] {
 }
 
 #form_envoie #quantite {
-    display: block;
+/*    display: block;*/
     margin: 10px auto 0;
 /*    text-align: center;*/
 }
 
 #form_envoie label {
+    float: left;
+    text-align: right;
+    width: 70px;
     margin-right: 5px;
     font-weight: bold;
+    margin-top: 15px;
 }
 
 
@@ -432,6 +436,7 @@ input[type=submit] {
     
    background-color: #ffddf7;
    font-weight: bold;
+   font-style: italic;
 }
 
 
@@ -464,3 +469,39 @@ input[type=submit] {
     cursor: pointer;
 }
 
+.page {
+    float: right;
+    position: relative;
+    bottom: 3px;
+    right: 2px;
+}
+
+.pagination {
+    padding: 2px;
+    font-size: 10px;
+    text-decoration: none;
+    color: #fff;
+    word-spacing: 0;
+}
+
+.pagina {
+    color: grey;
+    padding: 2px;
+}
+
+.page a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.page #current {
+    font-weight: bold;
+    color: #000;
+}
+
+.page #current:hover {
+    font-weight: bold;
+    color: #000;
+    cursor: auto;
+    text-decoration: none;
+}
