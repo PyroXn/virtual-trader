@@ -394,6 +394,16 @@ input[type=submit] {
     margin-top: 15px;
 }
 
+input[type=radio] {
+    display: inline;
+    margin: 0 5px 0 15px;;
+    position: relative;
+    top: 2px;
+}
+
+.radio {
+    color: gray;
+}
 
 #bourse {
     border: none;

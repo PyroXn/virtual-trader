@@ -157,12 +157,11 @@ function formulaire_contact() {
         <div id="form_envoie">
             <h2>Contact</h2>
             <p>Un problème ? Une question ? N\'hésitez pas à nous contacter.</p>
-
             <form action="index.php?page=verification_contact" method="post">
-                <select name="probleme">
-                    <option value="1">Problème technique</option>
-                    <option value="2">Le jeu</option>
-                </select>
+                <div class="radio">
+                    <input type="radio" name="probleme" value="1" checked="checked">Problème technique</input>
+                    <input type="radio" name="probleme" value="2">Le jeu</input>
+                </div>
                 <input type="text" name="nom" placeholder="Nom">
                 <input type="text" name="prenom" placeholder="Prenom">
                 <input type="text" name="email" placeholder="E-mail">
@@ -183,7 +182,7 @@ function verification_contact() {
     $message = mysql_real_escape_string($_POST['message']);
     $email = mysql_real_escape_string($_POST['email']);
     if($_POST['probleme'] == 1) {
-    $destinataire = 'florian.janson@mydevhouse.com'; // Adresse e-mail du destinataire
+        $destinataire = 'florian.janson@mydevhouse.com'; // Adresse e-mail du destinataire
     } else {
         $destinataire = 'supinvest.tours@gmail.com';
     }
