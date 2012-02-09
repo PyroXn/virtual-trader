@@ -66,6 +66,8 @@ elseif ($page == 'banque') {
     supprimer_compte();
 } elseif ($page == 'lost_password') {
     lostPassword();
+} elseif ($page == 'cgu') {
+    cgu();
 }
 // Admin
 elseif ($page == 'accueilAdmin') {
@@ -115,14 +117,48 @@ function formulaire_inscription() {
                         <div><input type="text" name="login" id="login" placeholder="Login"/><span class="error"></span></div>
                         <div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
                         <div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
-                        <input type="checkbox"/><span>En cochant cette case j\'accepte les <a href="">CGU</a> et la politique de confidentialité.</span>
+                        <input name="cgu" type="checkbox"/><span>En cochant cette case j\'accepte les <a href="index.php?page=cgu">CGU</a> et la politique de confidentialité.</span>
                         <input type="submit" value="Envoyer" id="submitInscription"/>
                     </form>';
     display($contenu);
 }
 
+function cgu() {
+    $contenu = '<h1>Conditions Générales d\'utilisation</h1>';
+    $contenu .= '<p><ul>
+        <li>Virtual Trader est un jeu de simulation boursière, l\'argent que vous y gagnez ou perdez est totalement virtuel. </li>
+<li>Virtual Trader est une propriété de My Dev House</li>
+<li>La plateforme Virtual Trader est <font style="color: red; font-weight: bold;">exclusivement réservée aux étudiants de l\'ESCEM.</font></li>
+<li>Vous ne pouvez ouvrir qu\'un compte par personne et par adresse de courrier électronique.</li>
+
+<li>L\'étudiant qui s\'inscrit doit obligatoirement utiliser son adresse ESCEM pour l\'inscription (ex : ldupond@escem.com). <font style="color: red; font-weight: bold;">Si cette condition n\'est pas respectée, le compte du joueur sera immédiatement supprimé. </font></li>
+<li>L\'étudiant pourra en revanche utiliser le pseudonyme et le mot de passe qu\'il souhaite.</li>
+<li>Les abus, s\'ils sont détectés, seront sanctionnés par un bannissement de l\'étudiant du Challenge.</li>
+<li>Le staff Sup\'Invest étant à l\'entière disposition des étudiants pour d\'éventuelles questions, nous attendons la plus grande courtoisie de la part de ces derniers. En cas de litige, seule l\'équipe Sup\'Invest sera habilitée à trancher et sanctionner le ou les fautifs, pensez à les prévenir lorsqu\'un concurrent dérape plutôt que vous faire justice vous-même.</li>
+
+<li>Toute tentative de piratage du serveur par l\'ordinateur d\'un membre sera <font style="color: red; font-weight: bold;">punie d\'une exclusion définitive du Challenge ainsi que de l\'établissement.</font></li>
+
+<li>Le staff Sup\'Invest ne pourra être tenu pour responsable d\'une erreur (bug) dans le jeu ou d\'un problème technique vous ayant porté préjudice.</li>
+
+<li>Les lots ne sont pas cessibles. Les gagnants ne pourront exiger de recevoir la valeur des lots en espèces. L\'équipe Sup\'Invest se réserve le droit de choisir les lots à tout moment.</li>
+
+<li>L\'équipe Sup\'Invest se réserve le droit de diffuser les informations concernant les participants aux partenaires figurants sur la plateforme Virtual Trader.</li>
+
+<li>Conformément à la loi vous disposez d\'un droit d\'accès et de rectification de vos données personnelles, pour cela contactez un membre de l\'équipe Sup\'Invest.</li>
+
+<li><font style="color: red; font-weight: bold;">En prenant part au concours, les participants acceptent les conditions de participation.</font></li>
+</ul>
+</p>
+<p>Maintenant que nous sommes tous d\'accord, passons aux réjouissances: bon courage à tous et que le(la) meilleur(e) gagne !</p>';
+    display($contenu);
+}
 function verification_inscription() {
     connect();
+    if(!isset($_POST['cgu'])) {
+        $contenu = 'Vous devez accepter les <a href="index.php?page=cgu">conditions générales d\'utilisation</a>';
+        display($contenu);
+        exit();
+    }
     $resultat = inscription($_POST['login'], $_POST['mdp'], $_POST['mail']);
     if ($resultat == 0) {
         $contenu = "Merci de bien vouloir compléter tous les champs.";
