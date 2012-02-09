@@ -424,6 +424,9 @@ input[type=submit] {
     color: blue;
 }
 
+#bourse a .pseudo {
+    color: #000;
+}
 .pair {
     background-color: #e2e9f1;
 }
