@@ -87,22 +87,24 @@ $_SESSION['classement'] = 5; // Nombre par page
 
 function accueil() {
     $contenu = '<center><h2>Présentation</h2></center>
-			<p>Virtual Trader est un jeu accessible à tous qui vous permet de goûter aux joies et aux frayeurs de la Bourse mais sans le moindre risque.</p>
+			<p>Bienvenue sur Virtual Trader, la plateforme de simulation boursière créée par <a href="http://www.mydevhouse.com" title="My Dev House">My Dev House</a> pour le challenge boursier organisé par <b>Sup\'Invest</b>.</p>
 
-			<blockquote><p>Achetez, Revendez, Gagnez ou Perdez, peu importe puisque vous ne jouez pas d\'argent réel . Vous démarrez avec un capital de 20.000 &euro; et vous devez réaliser le meilleur bénéfice. Vous figurez dans un classement sur le site de Virtual-Trader pour être confronté aux autres joueurs.</p></blockquote>
+			<p>Tu vas pouvoir goûter aux joies et aux frayeurs de la Bourse mais sans le moindre risque sauf celui de repartir avec un super lot.</p>
+<p>Pour te permettre de réaliser la meilleure plus-value et devenir le meilleur espoir Trader de l\'ESCEM, Sup\'Invest met à ta disposition 100.000&euro; fictifs.</p>
 			
 			<center><h2>Virtual-Trader c\'est :</h2></center>
 			<p><ul>
 					<li>- Un jeu à la fois palpitant et instructif</li>
-					<li>- 20.000 &euro; virtuel à faire fructifier</li>
+					<li>- 100.000 &euro; virtuel à faire fructifier</li>
 					<li>- Une mise à jour des valeurs et du classement en temps réel !</li>
 					<li>- Et bien d\'autres choses à découvrir</li>
 				</ul>
 			</p>
-			<center><h2>Screenshot</h2></center>
-			<p><center><a href="./templates/img/bourse.png"><img src="./templates/img/bourse.png" height="90" width="120"></a><a href="./templates/img/vos_actions.png"><img src="./templates/img/vos_actions.png" height="90" width="120"></a>
+                                                        <p>Toute l\'équipe de Sup\'Invest te remercie de ta participation et te souhaite une bonne chance.</p>
+			<center><h2>Remerciements</h2></center>
+			<p><center><img src="./templates/img/remerciement.jpg"></a>
 			</center><br />
-			<p>Virtual Trader met à votre disposition une interface claire, simple et éfficace. Alors n\'attendez plus, et rejoignez nous !</p>';
+			<p>N\'hésite pas à <a href="index.php?page=contact" title="Nous contacter">contacter</a> l\'équipe de Sup\'Invest pour toute question dans le formulaire de contact (conseil, problème technique, questions?)</p>';
     display($contenu);
 }
 
@@ -157,6 +159,10 @@ function formulaire_contact() {
             <p>Un problème ? Une question ? N\'hésitez pas à nous contacter.</p>
 
             <form action="index.php?page=verification_contact" method="post">
+                <select name="probleme">
+                    <option value="1">Problème technique</option>
+                    <option value="2">Le jeu</option>
+                </select>
                 <input type="text" name="nom" placeholder="Nom">
                 <input type="text" name="prenom" placeholder="Prenom">
                 <input type="text" name="email" placeholder="E-mail">
@@ -176,7 +182,11 @@ function verification_contact() {
     $sujet = mysql_real_escape_string($_POST['sujet']);
     $message = mysql_real_escape_string($_POST['message']);
     $email = mysql_real_escape_string($_POST['email']);
+    if($_POST['probleme'] == 1) {
     $destinataire = 'florian.janson@mydevhouse.com'; // Adresse e-mail du destinataire
+    } else {
+        $destinataire = 'supinvest.tours@gmail.com';
+    }
     if (!preg_match("#@#", $email) || !preg_match("#[.]#", $email)) {
         $contenu = 'Adresse e-mail incorrect.';
         display($contenu);
