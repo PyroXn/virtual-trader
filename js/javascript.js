@@ -100,8 +100,8 @@ $(function() {
     
         $('.pagination').click(function() {
         var page = $(this).attr('name');
-        $('a#currentPagi').removeAttr("id");
-        $(this).attr("id","currentPagi");
+        $('#current').removeAttr("id");
+        $(this).attr("id","current");
         pa = 'page='+page;
         $.ajax ({
             type: "POST",
@@ -117,8 +117,8 @@ $(function() {
 
     $('.pagina').click(function() {
         var page = $(this).attr('name');
-        $('a#currentPagi').removeAttr("id");
-        $(this).attr("id","currentPagi");
+        $('#currentcla').removeAttr("id");
+        $(this).attr("id","currentcla");
         pa = 'page='+page;
         $.ajax ({
             type: "POST",

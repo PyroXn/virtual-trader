@@ -197,7 +197,7 @@ function achat() {
     $date = date("d.m.y");
     $infos_joueur = infos_joueur($_SESSION['nom']);
     $infos_action = infos_action($_POST['id']);
-    $nom_action = $_POST['action'];
+    $nom_action = $infos_action['Nom'];
 
     if ($nom_action == 'L\'OREAL') {
         $nom_action = 'L&#039;OREAL';
@@ -261,7 +261,7 @@ function formulaire_vente() {
     $contenu = '
         <p>Merci de bien vouloir choisir la quantité d\'action que vous désirez vendre.</p>
         <h2>Vente d\'action</h2>
-        <form id="form_envoie" action="index.php?page=vente" method="post" name="form1">
+        <form id="form_envoie" action="index.php?page=vente" method="POST" name="form1">
             <div><label>Action :</label><input disabled type="text" name="action" value="' . $infos_action['Nom'] . '"></div>
             <div><label>En stock :</label><input disabled type="text" value="' . $quantite_action . '"></div>
             
@@ -291,7 +291,7 @@ function vente() {
         $nom_action = $infos_action['Nom'];
     }
     $action_quantite = $nom_action . '_quantite';
-    $nom_action = $_POST['action'];
+    $nom_action = $infos_action['Nom'];
     $quantite_action = $_POST['quantite'];
     if ($quantite_action > $infos_joueur[$action_quantite]) {
         $contenu = 'Vous ne pouvez pas vendre plus d\'action que vous en possedez.';

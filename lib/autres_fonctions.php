@@ -246,7 +246,7 @@ function classement() {
     $contenu .= '<div class="page">';
     for ($i = 1; $i <= $nbPage; $i++) {
         if ($i == 1) {
-            $contenu .= '<a id="current" class="pagina" name="' . $i . '">' . $i . '</a>';
+            $contenu .= '<a id="currentcla" class="pagina" name="' . $i . '">' . $i . '</a>';
         } else {
             $contenu .= '<a class="pagina" name="' . $i . '">' . $i . '</a>';
         }

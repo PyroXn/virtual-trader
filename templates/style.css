@@ -499,7 +499,19 @@ input[type=submit] {
     color: #000;
 }
 
-.page #current:hover {
+.page #currentcla:hover {
+    font-weight: bold;
+    color: #000;
+    cursor: auto;
+    text-decoration: none;
+}
+
+.page #currentcla {
+    font-weight: bold;
+    color: #000;
+}
+
+.page #currentcla:hover {
     font-weight: bold;
     color: #000;
     cursor: auto;
