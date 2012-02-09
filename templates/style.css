@@ -425,8 +425,7 @@ input[type=radio] {
 }
 
 #bourse td {
-/*    border: none;*/
-     padding-bottom: 2px;
+    padding-bottom: 2px;
     border-bottom: 1px dotted #9D9D9D;
 }
 
@@ -434,9 +433,10 @@ input[type=radio] {
     color: blue;
 }
 
-#bourse a .pseudo {
-    color: #000;
+#bourse .pseudo {
+    color: black;
 }
+
 .pair {
     background-color: #e2e9f1;
 }
