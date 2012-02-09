@@ -19,20 +19,23 @@
                     var nbr = nbr.value;
                     var price = <?php echo str_replace(",", ".", $_GET['prix']); ?>;
                     var prixht = price*nbr;
+                    if  (prixht != 0) {
+                        if (prixht < 5000)
+                        {
+                            prixttc = prixht+5;
+                        }
+                        else if (prixht > 5000 && prixht < 15000)
+                        {
+                            prixttc = prixht+10;
+                        }
+                        else {
+                            prixttc = prixht+15;
+                        }
+                    } else {
+                        prixttc = null;
+                    }
                         	
-                    if (prixht < 5000)
-                    {
-                        prixttc = prixht+5;
-                    }
-                    else if (prixht > 5000 && prixht < 15000)
-                    {
-                        prixttc = prixht+10;
-                    }
-                    else {
-                        prixttc = prixht+15;
-                    }
-                        	
-                    document.getElementById("prix").innerHTML = prixttc;
+                    document.getElementById("prix").value = prixttc;
                 }
             </script>
             <?php
@@ -160,7 +163,11 @@
                             echo getTop10();
                             ?>
                     </ul>
-                    Page : <a class="pagination" name="1">1</a> <a class="pagination" name="2">2</a> <a class="pagination" name="3">3</a>
+                    <div class="page">
+                        <a id="current" class="pagination" name="1">1</a>
+                        <a class="pagination" name="2">2</a>
+                        <a class="pagination" name="3">3</a>
+                    </div>
                 </div>
 
             </div>

@@ -225,12 +225,14 @@ function classement() {
                     <td width="30%"><b>Potentiel</b></td>
                 </tr>';
     while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {
+        
         if ($first % 2 == 0) {
             $myClassement == $first+1 ? $contenu .= '<tr class="pair ligne_perso">' : $contenu .= '<tr class="pair">';
         } else {
             $myClassement == $first+1 ? $contenu .= '<tr class="impair ligne_perso">' : $contenu .= '<tr class="impair">';
         }
         $first++;
+        
         $contenu .= '
                     <td>' . $first . '</td>
                     <td>' . $liste_joueur['Nom'] . '</td>
@@ -241,17 +243,23 @@ function classement() {
     $contenu .= '</table></div>';
     // calcul du nombre de page
     $nbPage = ceil($nbJoueur / $nb);
-    $contenu .= 'Page : ';
+    $contenu .= '<div class="page">';
     for ($i = 1; $i <= $nbPage; $i++) {
-        $contenu .= '<a class="pagina" name="' . $i . '">' . $i . '</a>';
+        if ($i == 1) {
+            $contenu .= '<a id="current" class="pagina" name="' . $i . '">' . $i . '</a>';
+        } else {
+            $contenu .= '<a class="pagina" name="' . $i . '">' . $i . '</a>';
+        }
     }
+    $contenu .= '</div>';
     display($contenu);
 }
 
 function ajaxclassement() {
     verification();
     connect();
-    $p = 1;
+    $myClassement = myclassement();
+    $p = ceil($myClassement/$_SESSION['classement']);
     $nb = $_SESSION['classement'];
     if (isset($_POST['page'])) {
         $p = $_POST['page'];
@@ -267,13 +275,13 @@ function ajaxclassement() {
                         <td width="30%"><b>Argent</b></td>
                         <td width="30%"><b>Potentiel</b></td>
                     </tr>';
-    while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {
-        $first++;
+    while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {   
         if ($first % 2 == 0) {
-            $contenu .= '<tr class="pair">';
+            $myClassement == $first+1 ? $contenu .= '<tr class="pair ligne_perso">' : $contenu .= '<tr class="pair">';
         } else {
-            $contenu .= '<tr class="impair">';
+            $myClassement == $first+1 ? $contenu .= '<tr class="impair ligne_perso">' : $contenu .= '<tr class="impair">';
         }
+        $first++;
         $contenu .= '
                     <td>' . $first . '</td>
                     <td>' . $liste_joueur['Nom'] . '</td>

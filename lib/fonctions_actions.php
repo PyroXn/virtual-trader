@@ -169,29 +169,24 @@ function formulaire_achat() {
     $infos_action = infos_action($i);
     $prix_action_brut = $_GET['prix'];
     $prix_action = str_replace(",", ".", $prix_action_brut);
-    if ($heure >= 19 || $heure <= 8) {
+    if ($heure >= 19 || $heure <= 6) {
         $contenu = '<p>La bourse est actuellement fermé. Les achats/ventes ne peuvent se faire que lorsque celle-ci est ouverte.</p>';
         display($contenu);
         exit();
     }
-    $contenu = '<p>Merci de bien vouloir choisir l\'action et la quantité d\'action que vous désirez.
-			<h2>Choisir l\'action</h2>
-			<form action="index.php?page=achat" method="post" name="form1">
-			<table border="0">
-			<tr>
-				<td>Action :</td><td>
-			<select name="action" style="width:200px;">';
-    $contenu .= '<option value="' . $infos_action['Nom'] . '">' . $infos_action['Nom'] . '</option>';
-    $contenu .= '</select>
-				</td></tr>
-				<tr><td>Quantite :</td><td><input type="text" name="quantite" size="3" MAXLENGTH="3" onkeyup="CalculTTC(this)"></td></tr>
-				<tr><td>Prix :</td><td><b>' . $prix_action . '</b></td></tr>
-				<tr><td>Total TTC :</td><td><b><span id="prix"></span></b></td></tr>
-				<input type="hidden" name="id" value="' . $infos_action['Id'] . '">
-			<tr>
-				<td></td><td><input type="submit" value="Envoyer"></td></tr>
-			</table>
-			</form></p>';
+    $contenu = '
+        <p>Merci de bien vouloir choisir la quantité d\'action que vous désirez acheter.</p>
+        <h2>Achat d\'action</h2>
+        <form id="form_envoie" action="index.php?page=achat" method="post" name="form1">
+            <div><label>Action :</label><input disabled type="text" name="action" value="' . $infos_action['Nom'] . '"><div>
+            <div>
+                <label>Prix :</label><input disabled type="text" value ="' . $prix_action . '">
+                <input type="text" id="quantite" name="quantite" placeholder="Quantité" onkeyup="CalculTTC(this)">
+            </div>
+            <div><label>Total TTC :</label><input disabled type="text" id="prix" ></div>
+            <input type="hidden" name="id" value="' . $infos_action['Id'] . '">
+            <input type="submit" value="Achat">
+        </form>';
     display($contenu);
 }
 
@@ -264,18 +259,18 @@ function formulaire_vente() {
         exit();
     }
     $contenu = '
-        <p>Merci de bien vouloir choisir l\'action et la quantité d\'action que vous désirez.
-        <h2>Choisir l\'action</h2>
+        <p>Merci de bien vouloir choisir la quantité d\'action que vous désirez vendre.</p>
+        <h2>Vente d\'action</h2>
         <form id="form_envoie" action="index.php?page=vente" method="post" name="form1">
+            <div><label>Action :</label><input disabled type="text" name="action" value="' . $infos_action['Nom'] . '"></div>
+            <div><label>En stock :</label><input disabled type="text" value="' . $quantite_action . '"></div>
+            
+            
             <div>
-                <span><label>Action :</label><input disabled type="text" name="action" value="' . $infos_action['Nom'] . '"></span>
-                <span class="colonne_droite"><label>Quantité possédé :</label><input disabled type="text" value="' . $quantite_action . '"></span>
+                <label>Prix :</label><input disabled type="text" value ="' . $prix_action . '">
+                <input type="text" id="quantite" name="quantite" placeholder="Quantité à vendre" onkeyup="CalculPrix(this)">
             </div>
-            <input type="text" id="quantite" name="quantite" placeholder="Quantité à vendre" onkeyup="CalculPrix(this)">
-            <div>
-                <span><label>Prix :</label><input disabled type="text" value ="' . $prix_action . '"></span>
-                <span class="colonne_droite"><label>Total TTC :</label><input disabled type="text" id="prix" ></span>
-            </div>
+            <div><label>Total TTC :</label><input disabled type="text" id="prix" ></div>
             
             
             <input type="hidden" name="id" value="' . $infos_action['Id'] . '">
