@@ -85,6 +85,7 @@ elseif ($page == 'ajaxclassement') {
 
 //VARIABLES
 $_SESSION['classement'] = 5; // Nombre par page
+$_SESSION['timeBetweenUpdate'] = 180; // seconde entre update
 
 
 function accueil() {

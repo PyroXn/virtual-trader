@@ -41,7 +41,7 @@ function mes_actions() {
             </tr>';
     $j = 0;
     for ($i = 1; $i <= 40; $i++) {
-        
+
         // Libellé de l'action
         $infos_action = infos_action($i); // On recupere les informations de l'action
         if ($infos_action['Nom'] == '+L&#039;OREAL') {
@@ -97,66 +97,106 @@ function mes_actions() {
 function bourse() {
     verification();
     connect();
+
+    $now = time();
+    $lastupdate = lastUpdate();
     $heure = date("H");
-    $code = file_get_contents('http://bourse.lesechos.fr/bourse/indices/composition.jsp?Code=FR0003500008&Place=00025-TR&Codif=ISI');
-    $code = preg_replace('/\s\s+/', ' ', $code);
-    $pattern_nom = <<<BEGIN
+    if (($now - $lastupdate) > $_SESSION['timeBetweenUpdate']) {
+        updateTimestamp($now);
+        $code = file_get_contents('http://bourse.lesechos.fr/bourse/indices/composition.jsp?Code=FR0003500008&Place=00025-TR&Codif=ISI');
+        $code = preg_replace('/\s\s+/', ' ', $code);
+        $pattern_nom = <<<BEGIN
 /<a[^>]*><b>([A-Z-\s*.&#039;]+)<\/b><\/a>/
 BEGIN;
 
-    $pattern_indice = <<<BEGIN
+        $pattern_indice = <<<BEGIN
 /<b>([0-9,]+)&nbsp;<\/b>/
 BEGIN;
 
-    preg_match_all(trim($pattern_nom), $code, $noms_actions);
-    preg_match_all(trim($pattern_indice), $code, $cours_actions);
-    $contenu = '<h2>Les cours de la bourse</h2>';
-    $contenu .= '<table id="bourse">';
-    $contenu .= '<tr>';
-    $contenu .= '<td width="40%"><b>Libellé </b></td>';
-    $contenu .= '<td width="17%"><b>Cours </b></td>';
-    $contenu .= '<td width="17%"><b>Varia </b></td>';
-    $contenu .= '<td width="17%"><b>Clôt prec</b></td>';
-    $contenu .= '<td width="9%"><b>Acheter</b></td>';
-    $contenu .= '</tr>';
-    $o = 1;
-    for ($i = 0; $i < 40; $i++) {
-        //mysql_query("INSERT INTO actions SET Nom='".$noms_actions[1][$i]."',Clot_prec='10.70',Price='".$cours_actions[1][$i]."'");
-        /* $cours = preg_replace("/,/",".",$cours_actions[1][$i]);
-          mysql_query("INSERT INTO `actions`(Nom,Clot_prec,Price) VALUES ('".$noms_actions[1][$i]."','".$cours."','".$cours."')"); */
-        if ($i % 2 == 0) {
-            $contenu .= '<tr class="pair">';
-        } else {
-            $contenu .= '<tr class="impair">';
-        }
+        preg_match_all(trim($pattern_nom), $code, $noms_actions);
+        preg_match_all(trim($pattern_indice), $code, $cours_actions);
+        $contenu = '<h2>Les cours de la bourse</h2>';
+        $contenu .= '<table id="bourse">';
+        $contenu .= '<tr>';
+        $contenu .= '<td width="40%"><b>Libellé </b></td>';
+        $contenu .= '<td width="17%"><b>Cours </b></td>';
+        $contenu .= '<td width="17%"><b>Varia </b></td>';
+        $contenu .= '<td width="17%"><b>Clôt prec</b></td>';
+        $contenu .= '<td width="9%"><b>Acheter</b></td>';
+        $contenu .= '</tr>';
+        $o = 1;
+        for ($i = 0; $i < 40; $i++) {
+            //mysql_query("INSERT INTO actions SET Nom='".$noms_actions[1][$i]."',Clot_prec='10.70',Price='".$cours_actions[1][$i]."'");
+            /* $cours = preg_replace("/,/",".",$cours_actions[1][$i]);
+              mysql_query("INSERT INTO `actions`(Nom,Clot_prec,Price) VALUES ('".$noms_actions[1][$i]."','".$cours."','".$cours."')"); */
+            if ($i % 2 == 0) {
+                $contenu .= '<tr class="pair">';
+            } else {
+                $contenu .= '<tr class="impair">';
+            }
 
-        $contenu .= '<td>' . $noms_actions[1][$i] . '</td>';
-        $contenu .= '<td>' . $cours_actions[1][$i] . '</td>';
-        // On recherche les informations de la cloture precedente
-        if ($noms_actions[1][$i] == "L&#039;&#039;OREAL") {
-            $noms_actions[1][$i] = "L&#039;OREAL";
+            $contenu .= '<td>' . $noms_actions[1][$i] . '</td>';
+            $contenu .= '<td>' . $cours_actions[1][$i] . '</td>';
+            // On recherche les informations de la cloture precedente
+            if ($noms_actions[1][$i] == "L&#039;&#039;OREAL") {
+                $noms_actions[1][$i] = "L&#039;OREAL";
+            }
+            $cloture_precedente = mysql_query("SELECT * FROM `actions` WHERE `Nom`='" . $noms_actions[1][$i] . "'");
+            $affichage_cloture = mysql_fetch_assoc($cloture_precedente);
+            $valeur_action = str_replace(",", ".", $cours_actions[1][$i]);
+            if ($heure >= 19 || $heure <= 8) {
+                $update_cloture_precedente = mysql_query("UPDATE actions SET `Clot_prec`='" . $valeur_action . "' WHERE `Nom`='" . $noms_actions[1][$i] . "'");
+            }
+            if ($valeur_action != 0) {
+                $update_prix = mysql_query("UPDATE actions SET `Price`='" . $valeur_action . "' WHERE Nom='" . $noms_actions[1][$i] . "'");
+            }
+            $taux_variation = ($valeur_action - $affichage_cloture['Clot_prec']) / $affichage_cloture['Clot_prec'] * 100;
+            if ($taux_variation >= 0) {
+                $contenu .= '<td class="green">+ ' . round($taux_variation, 2) . '%</td>';
+            } else {
+                $contenu .= '<td class="red"> ' . round($taux_variation, 2) . '%</td>';
+            }
+            $contenu .= '<td>' . $affichage_cloture['Clot_prec'] . '</td>';
+            $contenu .= '<td><a href="index.php?page=formulaire_achat&actions=' . $o . '&prix=' . $cours_actions[1][$i] . '">Acheter</a></td>';
+            $o++;
         }
-        $cloture_precedente = mysql_query("SELECT * FROM `actions` WHERE `Nom`='" . $noms_actions[1][$i] . "'");
-        $affichage_cloture = mysql_fetch_assoc($cloture_precedente);
-        $valeur_action = str_replace(",", ".", $cours_actions[1][$i]);
-        if ($heure >= 19 || $heure <= 8) {
-            $update_cloture_precedente = mysql_query("UPDATE actions SET `Clot_prec`='" . $valeur_action . "' WHERE `Nom`='" . $noms_actions[1][$i] . "'");
+        $contenu .= '</tr>';
+        $contenu .= '</table>';
+    } else {
+        $contenu = '<h2>Les cours de la bourse</h2>';
+        $contenu .= '<table id="bourse">';
+        $contenu .= '<tr>';
+        $contenu .= '<td width="40%"><b>Libellé </b></td>';
+        $contenu .= '<td width="17%"><b>Cours </b></td>';
+        $contenu .= '<td width="17%"><b>Varia </b></td>';
+        $contenu .= '<td width="17%"><b>Clôt prec</b></td>';
+        $contenu .= '<td width="9%"><b>Acheter</b></td>';
+        $contenu .= '</tr>';
+        $o = 1;
+        for ($i = 0; $i < 40; $i++) {
+            $action = infos_action($i+1);
+            if ($i % 2 == 0) {
+                $contenu .= '<tr class="pair">';
+            } else {
+                $contenu .= '<tr class="impair">';
+            }
+
+            $contenu .= '<td>' . $action['Nom'] . '</td>';
+            $contenu .= '<td>' . $action['Price'] . '</td>';
+            
+            $taux_variation = ($action['Price'] - $action['Clot_prec']) / $action['Clot_prec'] * 100;
+            if ($taux_variation >= 0) {
+                $contenu .= '<td class="green">+ ' . round($taux_variation, 2) . '%</td>';
+            } else {
+                $contenu .= '<td class="red"> ' . round($taux_variation, 2) . '%</td>';
+            }
+            $contenu .= '<td>' . $action['Clot_prec'] . '</td>';
+            $contenu .= '<td><a href="index.php?page=formulaire_achat&actions=' . $o . '&prix=' . $action['Price'] . '">Acheter</a></td>';
+            $o++;
         }
-        if($valeur_action != 0) {
-            $update_prix = mysql_query("UPDATE actions SET `Price`='" . $valeur_action . "' WHERE Nom='" . $noms_actions[1][$i] . "'");
-        }
-        $taux_variation = ($valeur_action - $affichage_cloture['Clot_prec']) / $affichage_cloture['Clot_prec'] * 100;
-        if ($taux_variation >= 0) {
-            $contenu .= '<td class="green">+ ' . round($taux_variation, 2) . '%</td>';
-        } else {
-            $contenu .= '<td class="red"> ' . round($taux_variation, 2) . '%</td>';
-        }
-        $contenu .= '<td>' . $affichage_cloture['Clot_prec'] . '</td>';
-        $contenu .= '<td><a href="index.php?page=formulaire_achat&actions=' . $o . '&prix=' . $cours_actions[1][$i] . '">Acheter</a></td>';
-        $o++;
+        $contenu .= '</tr>';
+        $contenu .= '</table>';
     }
-    $contenu .= '</tr>';
-    $contenu .= '</table>';
     display($contenu);
 }
 
@@ -253,11 +293,11 @@ function formulaire_vente() {
     $quantite_action = $infos_joueur[$action_quantite];
     $prix_action_brut = $_GET['prix'];
     $prix_action = str_replace(",", ".", $prix_action_brut);
-    if ($heure >= 19 || $heure <= 8) {
-        $contenu = '<p>La bourse est actuellement fermé. Les achats/ventes ne peuvent se faire que lorsque celle-ci est ouverte.</p>';
-        display($contenu);
-        exit();
-    }
+//    if ($heure >= 19 || $heure <= 8) {
+//        $contenu = '<p>La bourse est actuellement fermé. Les achats/ventes ne peuvent se faire que lorsque celle-ci est ouverte.</p>';
+//        display($contenu);
+//        exit();
+//    }
     $contenu = '
         <p>Merci de bien vouloir choisir la quantité d\'action que vous désirez vendre.</p>
         <h2>Vente d\'action</h2>

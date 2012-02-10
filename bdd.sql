@@ -258,3 +258,16 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+CREATE TABLE IF NOT EXISTS `configuration` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lastupdate` bigint(99) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `configuration`
+--
+
+INSERT INTO `configuration` (`id`, `lastupdate`) VALUES
+(1, 0);
+
