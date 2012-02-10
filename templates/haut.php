@@ -59,7 +59,7 @@
         <div id="header">
             <div id="banniere">
                 <ul>
-                    <li>Faites fructifier 20 000&euro; virtuels.</li>
+                    <li>Faites fructifier 100 000&euro; virtuels.</li>
                     <li>Une mise à jour en temps réel du CAC40.</li>
                     <li>Un jeu à la fois palpitant et instructif.</li>
                 </ul></div>

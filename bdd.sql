@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `joueurs` (
   `Id` int(255) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(255) CHARACTER SET latin1 NOT NULL,
   `Password` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `Argent` double(9,2) NOT NULL DEFAULT '20000.00',
+  `Argent` double(9,2) NOT NULL DEFAULT '100000.00',
   `Argent_pot` double(10,2) NOT NULL DEFAULT '0.00',
   `Emprunt` double(9,2) NOT NULL DEFAULT '0.00',
   `Emprunt_remb` float(5,2) NOT NULL DEFAULT '0.00',
