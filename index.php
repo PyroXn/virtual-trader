@@ -89,7 +89,9 @@ $_SESSION['timeBetweenUpdate'] = 180; // seconde entre update
 
 
 function accueil() {
-    $contenu = '<center><h2>Présentation</h2></center>
+    $contenu = '
+        <center><img src="./templates/img/escem.png"/></center>
+        <center><h2>Présentation</h2></center>
 			<p>Bienvenue sur Virtual Trader, la plateforme de simulation boursière créée par <a href="http://www.mydevhouse.com" title="My Dev House">My Dev House</a> pour le challenge boursier organisé par <b>Sup\'Invest</b>.</p>
 
 			<p>Tu vas pouvoir goûter aux joies et aux frayeurs de la Bourse mais sans le moindre risque sauf celui de repartir avec un super lot.</p>
@@ -105,7 +107,7 @@ function accueil() {
 			</p>
                                                         <p>Toute l\'équipe de Sup\'Invest te remercie de ta participation et te souhaite une bonne chance.</p>
 			<center><h2>Remerciements</h2></center>
-			<p><center><img src="./templates/img/remerciement.jpg"></a>
+			<p><center><img src="./templates/img/remerciement.png"></a>
 			</center><br />
 			<p>N\'hésite pas à <a href="index.php?page=contact" title="Nous contacter">contacter</a> l\'équipe de Sup\'Invest pour toute question dans le formulaire de contact (conseil, problème technique, questions?)</p>';
     display($contenu);

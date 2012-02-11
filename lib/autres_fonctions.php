@@ -221,8 +221,9 @@ function classement() {
                 <tr>
                     <td width="10%"></td>
                     <td width="30%"><b>Nom</b></td>
-                    <td width="30%"><b>Argent</b></td>
-                    <td width="30%"><b>Potentiel</b></td>
+                    <td width="10%"></td>
+                    <td width="25%"><b>Argent</b></td>
+                    <td width="25%"><b>Potentiel</b></td>
                 </tr>';
     while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {
         
@@ -235,7 +236,8 @@ function classement() {
         
         $contenu .= '
                     <td>' . $first . '</td>
-                    <td><a class="pseudo" href="index.php?page=envoyer_message&joueurs=' . $liste_joueur['Nom'] . '">' . $liste_joueur['Nom'] . ' <img src="./templates/img/mail16x16.png"></a></td>
+                    <td>' . $liste_joueur['Nom'] . '</td>
+                    <td><a class="pseudo" href="index.php?page=envoyer_message&joueurs='.$liste_joueur['Nom'].'"><img src="./templates/img/mail16x16.png"></a></td>
                     <td>' . $liste_joueur['Argent'] . '</td>
                     <td>' . $liste_joueur['Argent_pot'] . '</td>
                 </tr>';
@@ -272,8 +274,9 @@ function ajaxclassement() {
                     <tr>
                         <td width="10%"></td>
                         <td width="30%"><b>Nom</b></td>
-                        <td width="30%"><b>Argent</b></td>
-                        <td width="30%"><b>Potentiel</b></td>
+                        <td width="10%"></td>
+                        <td width="25%"><b>Argent</b></td>
+                        <td width="25%"><b>Potentiel</b></td>
                     </tr>';
     while ($liste_joueur = mysql_fetch_assoc($liste_joueur_brut)) {   
         if ($first % 2 == 0) {
@@ -285,6 +288,11 @@ function ajaxclassement() {
         $contenu .= '
                     <td>' . $first . '</td>
                     <td>' . $liste_joueur['Nom'] . '</td>
+                    <td>
+                        <a class="pseudo" href="index.php?page=envoyer_message&joueurs='.$liste_joueur['Nom'].'">
+                            <img src="./templates/img/mail16x16.png">
+                        </a>
+                    </td>
                     <td>' . $liste_joueur['Argent'] . '</td>
                     <td>' . $liste_joueur['Argent_pot'] . '</td>
             </tr>';

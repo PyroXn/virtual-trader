@@ -271,3 +271,47 @@ CREATE TABLE IF NOT EXISTS `configuration` (
 INSERT INTO `configuration` (`id`, `lastupdate`) VALUES
 (1, 0);
 
+
+CREATE TABLE IF NOT EXISTS `association` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `designation` varchar(255) NOT NULL,
+  `id_action` int(11) DEFAULT NULL,
+  `prix_achat` float(5,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
+
+--
+-- Contenu de la table `association`
+--
+
+INSERT INTO `association` (`id`, `designation`, `id_action`, `prix_achat`) VALUES
+(1, 'Birdie Par Tee', 0, 0.00),
+(2, 'Challenge Ecricome', 0, 0.00),
+(3, 'Job Service', 0, 0.00),
+(4, 'Junior ESCEM Conseil', 0, 0.00),
+(5, 'La Nuitée', 0, 0.00),
+(6, 'Aloha', 0, 0.00),
+(7, 'Cabestan', 0, 0.00),
+(8, 'Esc''kape', 0, 0.00),
+(9, 'Esckiff''Escem', 0, 0.00),
+(10, 'Surfeurs d''eau douce', 0, 0.00),
+(11, 'XV pour Tous', 0, 0.00),
+(12, 'Comu', 0, 0.00),
+(13, 'Et vie danse', 0, 0.00),
+(14, 'Gargantu''Esc', 0, 0.00),
+(15, 'Imag''in', 0, 0.00),
+(16, 'Millesc''Im', 0, 0.00),
+(17, 'Nakama', 0, 0.00),
+(18, 'Talent d''Achille', 0, 0.00),
+(19, '45'' tours', 0, 0.00),
+(20, 'l''Escémien', 0, 0.00),
+(21, 'Tour à Tours', 0, 0.00),
+(22, 'Tour'' Esthic', 0, 0.00),
+(23, 'Unis''Vert', 0, 0.00),
+(24, 'Atout Cœur', 0, 0.00),
+(25, 'Copains d''vacances', 0, 0.00),
+(26, 'Cool School', 0, 0.00),
+(27, 'Eclats de rire', 0, 0.00),
+(28, 'Sang pour Sang', 0, 0.00),
+(29, 'Tour de Mains', 0, 0.00),
+(30, '4 L Trophy', 0, 0.00);

@@ -34,7 +34,7 @@
                     } else {
                         prixttc = null;
                     }
-                        	
+                            	
                     document.getElementById("prix").value = prixttc;
                 }
             </script>
@@ -58,11 +58,13 @@
     <body>
         <div id="header">
             <div id="banniere">
-                <ul>
+                <img src="./templates/img/sup_invest_logo.png"></img>
+                <!--<ul>
                     <li>Faites fructifier 100 000&euro; virtuels.</li>
                     <li>Une mise à jour en temps réel du CAC40.</li>
                     <li>Un jeu à la fois palpitant et instructif.</li>
-                </ul></div>
+                </ul>-->
+            </div>
             <div id="navigation">
                 <ul>
                     <?php
@@ -128,9 +130,11 @@
                             <li><a href="index.php?page=mes_actions">Mes actions</a></li>
                             <li><a href="index.php?page=bourse">Bourse</a></li>
                             <?php
-                                $nb_message = nb_message($_SESSION['nom']);
+                            $nb_message = nb_message($_SESSION['nom']);
                             ?>
-                            <li><a href="index.php?page=messagerie">Messagerie<?php if ($nb_message > 0) { echo "<span class='red'> (".$nb_message.")</span>";} ?></a></li>
+                            <li><a href="index.php?page=messagerie">Messagerie<?php if ($nb_message > 0) {
+                            echo "<span class='red'> (" . $nb_message . ")</span>";
+                        } ?></a></li>
                         </ul>
                         <h2><img src="./templates/img/user.png"> Utilisateur</h2>
                         <ul>
@@ -152,7 +156,7 @@
                             <a href="index.php?page=lost_password" class="mini_texte">Mot de passe oublié ?</a>
                             <input type="submit" value="Se connecter" id="submitConnexion" />
                         </form>
-                    <?php } ?>
+<?php } ?>
                 </div>
                 <div class="classement cadre_bleu">
                     <h2>
@@ -160,14 +164,20 @@
                     </h2>
                     <ul>
                         <?php
-                            echo getTop10();
-                            ?>
+                        echo getTop10();
+                        ?>
                     </ul>
                     <div class="page">
                         <a id="current" class="pagination" name="1">1</a>
                         <a class="pagination" name="2">2</a>
                         <a class="pagination" name="3">3</a>
                     </div>
+                </div>
+                <div>
+                    <img src="./templates/img/BNP.jpg"/>
+                </div>
+                <div>
+                    <center><img src="./templates/img/cultura.jpg"/></center>
                 </div>
 
             </div>
