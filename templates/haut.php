@@ -173,6 +173,7 @@
                         <a class="pagination" name="3">3</a>
                     </div>
                 </div>
+                
                 <div>
                     <img src="./templates/img/BNP.jpg"/>
                 </div>
