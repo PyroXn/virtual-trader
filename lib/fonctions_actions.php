@@ -270,14 +270,16 @@ function achat() {
     // On retire le montant, ajoute la quantite d'action acheté, et insere le prix d'achat
     mysql_query("UPDATE `joueurs` SET Argent=Argent - '" . $total . "', `$action_quantite`=`$action_quantite`+'" . $quantite_action . "', `$nom_action`='" . $infos_action['Price'] . "'  WHERE Id='" . $infos_joueur['Id'] . "'");
     mysql_query("INSERT INTO historique SET `Date`=NOW(), `Nom`='" . $nom_action . "', `Sens`='Achat', `Quantite`='" . $quantite_action . "', `PU`='" . $infos_action['Price'] . "', `Total`='" . $total . "', `Joueur`='" . $_SESSION['nom'] . "'");
-    $contenu = '<center><h2>Votre achat</h2></center>';
-    $contenu .= '<p>Voici un récapitulatif de votre achat.</p>
-		<center><table border="0"><p><tr><td><b>Nom :</b></td><td>' . $nom_action . '</td></tr>
-		<tr><td><b>Quantite :</b></td><td>' . $quantite_action . '</td></tr>
-		<tr><td><b>Prix unitaire :</b></td><td>' . $infos_action['Price'] . '</td></tr>
-		<tr><td><b>Total HT :</b></td><td>' . $prix_total . ' &euro;</td></tr>
-		<tr><td><b>Taxe :</b></td><td>' . $frais . ' &euro;</td></tr>
-		<tr><td><b>Total TTC :</b></td><td>' . $total . ' &euro;</td></tr></p></table></center>';
+    $contenu = '<h2>Votre achat</h2>';
+    $contenu .= '
+        <div id="form_envoie">
+            <div><label>Nom :</label><input disabled type="text" value=' . $nom_action . '></div>
+            <div><label>Quantite :</label><input disabled type="text" value='. $quantite_action . '></div>
+            <div><label>PU :</label><input disabled type="text" value='. $infos_action['Price'] . '></div>
+            <div><label>Total HT :</label><input disabled type="text" value='. $total_vendu . '></div>
+                <div><label>Taxe :</label><input disabled type="text" value=' . $frais . '></div>
+		<div><label>Total TTC :</label><input disabled type="text" value=' . $total . '</div>
+        </div>';
     display($contenu);
 }
 
@@ -351,13 +353,15 @@ function vente() {
     }
     mysql_query("INSERT INTO historique SET `Date`=NOW(), `Nom`='" . $infos_action['Nom'] . "', `Sens`='Vente', `Quantite`='" . $quantite_action . "', `PU`='" . $infos_action['Price'] . "', `Total`='" . $total_vendu . "', `Joueur`='" . $_SESSION['nom'] . "'");
     // Affichage d'un récapitulatif pour l'utilisateur
-    $contenu = '<center><h2>Votre vente</h2></center>';
-    $contenu .= '<p>Voici un récapitulatif de votre vente.</p>
-		<center><table border="0"><p><tr><td><b>Nom :</b></td><td>' . $nom_action . '</td></tr>
-		<tr><td><b>Quantite :</b></td><td>' . $quantite_action . '</td></tr>
-		<tr><td><b>Prix unitaire :</b></td><td>' . $infos_action['Price'] . '</td></tr>
-		<tr><td><b>Total HT :</b></td><td>' . $total_vendu . ' €</td></tr>
-		</p></table></center>';
+    $contenu = '<h2>Votre vente</h2>';
+    $contenu .= '
+        <div id="form_envoie">
+            <div><label>Nom :</label><input disabled type="text" value=' . $nom_action . '></div>
+            <div><label>Quantite :</label><input disabled type="text" value='. $quantite_action . '></div>
+            <div><label>PU :</label><input disabled type="text" value='. $infos_action['Price'] . '></div>
+            <div><label>Total HT :</label><input disabled type="text" value='. $total_vendu . '></div>
+        </div>';
+    
     display($contenu);
 }
 

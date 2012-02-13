@@ -540,3 +540,16 @@ input[type=radio] {
     cursor: auto;
     text-decoration: none;
 }
+
+.centrer {
+    text-align: center;
+}
+
+.centrer  input[type=submit] {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul#cgu {
+    list-style-type: square;
+}

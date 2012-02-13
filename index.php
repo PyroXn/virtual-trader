@@ -97,16 +97,17 @@ function accueil() {
 			<p>Tu vas pouvoir goûter aux joies et aux frayeurs de la Bourse mais sans le moindre risque sauf celui de repartir avec un super lot.</p>
 <p>Pour te permettre de réaliser la meilleure plus-value et devenir le meilleur espoir Trader de l\'ESCEM, Sup\'Invest met à ta disposition 100.000&euro; fictifs.</p>
 			
-			<center><h2>Virtual-Trader c\'est :</h2></center>
-			<p><ul>
-					<li>- Un jeu à la fois palpitant et instructif</li>
-					<li>- 100.000 &euro; virtuel à faire fructifier</li>
-					<li>- Une mise à jour des valeurs et du classement en temps réel !</li>
-					<li>- Et bien d\'autres choses à découvrir</li>
-				</ul>
-			</p>
+			<h2 class="centrer">Virtual-Trader c\'est :</h2>
+                        <p>
+                        <ul>
+                            <li><p>- Un jeu à la fois palpitant et instructif</p></li>
+                            <li><p>- 100.000 &euro; virtuel à faire fructifier</p></li>
+                            <li><p>- Une mise à jour des valeurs et du classement en temps réel !</p></li>
+                            <li><p>- Et bien d\'autres choses à découvrir</p></li>
+                        </ul>
+			
                                                         <p>Toute l\'équipe de Sup\'Invest te remercie de ta participation et te souhaite une bonne chance.</p>
-			<center><h2>Remerciements</h2></center>
+			<h2 class="centrer">Remerciements</h2>
 			<p><center><img src="./templates/img/remerciement.png"></a>
 			</center><br />
 			<p>N\'hésite pas à <a href="index.php?page=contact" title="Nous contacter">contacter</a> l\'équipe de Sup\'Invest pour toute question dans le formulaire de contact (conseil, problème technique, questions?)</p>';
@@ -114,9 +115,9 @@ function accueil() {
 }
 
 function formulaire_inscription() {
-    $contenu = '<center><h2>Inscription</h2></center>
+    $contenu = '<h2 class="centrer">Inscription</h2>
 		<p>Afin de jouer à Virtual-Trader, merci de bien vouloir remplir ces différents champs.</p>
-                    <form action="index.php?page=verification_inscription" method="post" class="cadre_bleu">
+                    <form action="index.php?page=verification_inscription" method="post" class="cadre_bleu centrer">
                         <div><input type="text" name="login" id="login" placeholder="Login"/><span class="error"></span></div>
                         <div><input type="password" name="mdp" id="pwd" placeholder="Mot de passe"/><span class="error"></span></div>
                         <div><input type="text" name="mail" id="mail" placeholder="Adresse e-mail"/><span class="error"></span></div>
@@ -128,30 +129,29 @@ function formulaire_inscription() {
 
 function cgu() {
     $contenu = '<h1>Conditions Générales d\'utilisation</h1>';
-    $contenu .= '<p><ul>
-        <li>Virtual Trader est un jeu de simulation boursière, l\'argent que vous y gagnez ou perdez est totalement virtuel. </li>
-<li>Virtual Trader est une propriété de My Dev House</li>
-<li>La plateforme Virtual Trader est <font style="color: red; font-weight: bold;">exclusivement réservée aux étudiants de l\'ESCEM.</font></li>
-<li>Vous ne pouvez ouvrir qu\'un compte par personne et par adresse de courrier électronique.</li>
+    $contenu .= '<ul id="cgu">
+        <li><p>Virtual Trader est un jeu de simulation boursière, l\'argent que vous y gagnez ou perdez est totalement virtuel.</p></li>
+<li><p>Virtual Trader est une propriété de My Dev House</p></li>
+<li><p>La plateforme Virtual Trader est <font style="color: red; font-weight: bold;">exclusivement réservée aux étudiants de l\'ESCEM.</font></p></li>
+<li><p>Vous ne pouvez ouvrir qu\'un compte par personne et par adresse de courrier électronique.</p></li>
 
-<li>L\'étudiant qui s\'inscrit doit obligatoirement utiliser son adresse ESCEM pour l\'inscription (ex : ldupond@escem.com). <font style="color: red; font-weight: bold;">Si cette condition n\'est pas respectée, le compte du joueur sera immédiatement supprimé. </font></li>
-<li>L\'étudiant pourra en revanche utiliser le pseudonyme et le mot de passe qu\'il souhaite.</li>
-<li>Les abus, s\'ils sont détectés, seront sanctionnés par un bannissement de l\'étudiant du Challenge.</li>
-<li>Le staff Sup\'Invest étant à l\'entière disposition des étudiants pour d\'éventuelles questions, nous attendons la plus grande courtoisie de la part de ces derniers. En cas de litige, seule l\'équipe Sup\'Invest sera habilitée à trancher et sanctionner le ou les fautifs, pensez à les prévenir lorsqu\'un concurrent dérape plutôt que vous faire justice vous-même.</li>
+<li><p>L\'étudiant qui s\'inscrit doit obligatoirement utiliser son adresse ESCEM pour l\'inscription (ex : ldupond@escem.com). <font style="color: red; font-weight: bold;">Si cette condition n\'est pas respectée, le compte du joueur sera immédiatement supprimé. </font></p></li>
+<li><p>L\'étudiant pourra en revanche utiliser le pseudonyme et le mot de passe qu\'il souhaite.</p></li>
+<li><p>Les abus, s\'ils sont détectés, seront sanctionnés par un bannissement de l\'étudiant du Challenge.</p></li>
+<li><p>Le staff Sup\'Invest étant à l\'entière disposition des étudiants pour d\'éventuelles questions, nous attendons la plus grande courtoisie de la part de ces derniers. En cas de litige, seule l\'équipe Sup\'Invest sera habilitée à trancher et sanctionner le ou les fautifs, pensez à les prévenir lorsqu\'un concurrent dérape plutôt que vous faire justice vous-même.</p></li>
 
-<li>Toute tentative de piratage du serveur par l\'ordinateur d\'un membre sera <font style="color: red; font-weight: bold;">punie d\'une exclusion définitive du Challenge ainsi que de l\'établissement.</font></li>
+<li><p>Toute tentative de piratage du serveur par l\'ordinateur d\'un membre sera <font style="color: red; font-weight: bold;">punie d\'une exclusion définitive du Challenge ainsi que de l\'établissement.</font></p></li>
 
-<li>Le staff Sup\'Invest ne pourra être tenu pour responsable d\'une erreur (bug) dans le jeu ou d\'un problème technique vous ayant porté préjudice.</li>
+<li><p>Le staff Sup\'Invest ne pourra être tenu pour responsable d\'une erreur (bug) dans le jeu ou d\'un problème technique vous ayant porté préjudice.</p></li>
 
-<li>Les lots ne sont pas cessibles. Les gagnants ne pourront exiger de recevoir la valeur des lots en espèces. L\'équipe Sup\'Invest se réserve le droit de choisir les lots à tout moment.</li>
+<li><p>Les lots ne sont pas cessibles. Les gagnants ne pourront exiger de recevoir la valeur des lots en espèces. L\'équipe Sup\'Invest se réserve le droit de choisir les lots à tout moment.</p></li>
 
-<li>L\'équipe Sup\'Invest se réserve le droit de diffuser les informations concernant les participants aux partenaires figurants sur la plateforme Virtual Trader.</li>
+<li><p>L\'équipe Sup\'Invest se réserve le droit de diffuser les informations concernant les participants aux partenaires figurants sur la plateforme Virtual Trader.</p></li>
 
-<li>Conformément à la loi vous disposez d\'un droit d\'accès et de rectification de vos données personnelles, pour cela contactez un membre de l\'équipe Sup\'Invest.</li>
+<li><p>Conformément à la loi vous disposez d\'un droit d\'accès et de rectification de vos données personnelles, pour cela contactez un membre de l\'équipe Sup\'Invest.</p></li>
 
-<li><font style="color: red; font-weight: bold;">En prenant part au concours, les participants acceptent les conditions de participation.</font></li>
+<li><p><font style="color: red; font-weight: bold;">En prenant part au concours, les participants acceptent les conditions de participation.</font></p></li>
 </ul>
-</p>
 <p>Maintenant que nous sommes tous d\'accord, passons aux réjouissances: bon courage à tous et que le(la) meilleur(e) gagne !</p>';
     display($contenu);
 }
