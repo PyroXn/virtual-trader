@@ -45,6 +45,12 @@ ul {
     font-size: 13px;
 }
 
+#banniere img {
+    float: right;
+    margin-right: 45px;
+    margin-top: 4px;
+}
+
 #banniere ul {
     float: right;
     margin-right: 65px;

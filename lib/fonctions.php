@@ -86,4 +86,22 @@
 	{
 		mysql_query("UPDATE joueurs SET Argent_pot='".$montant."' WHERE Nom='".$joueur."'");
 	}
+        
+                /**
+                 * Recupere le timestamp du dernier update
+                 */
+                 function lastUpdate() {
+                     $sql = 'SELECT * FROM configuration';
+                     $req = mysql_query($sql);
+                     $data = mysql_fetch_assoc($req);
+                     return $data['lastupdate'];
+                 }
+                 
+                 /**
+                  * Actualise le timestamp
+                  */
+                 function updateTimestamp($time) {
+                     $sql = 'UPDATE configuration SET lastupdate="'.$time.'"';
+                     $req = mysql_query($sql);
+                 }
 ?>
