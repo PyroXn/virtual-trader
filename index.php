@@ -68,6 +68,8 @@ elseif ($page == 'banque') {
     lostPassword();
 } elseif ($page == 'cgu') {
     cgu();
+} elseif ($page == 'associations') {
+    classementAssoc();
 }
 // Admin
 elseif ($page == 'accueilAdmin') {

@@ -77,6 +77,7 @@
                             ?>
                             <li class="currentpage"><a href="index.php?page=accueil" title="Accueil">Accueil</a></li>
                             <li><a href="" title="">Présentation</a></li>
+                            <li><a href="index.php?page=associations" title="Associations">Associations</a></li>
                             <li><a href="index.php?page=contact" title="Contact">Contact</a></li>
                             <li><a href="index.php?page=accueilAdmin">Admin (<?php echo $nb; ?>)</a></li>
                             <?php
@@ -84,6 +85,7 @@
                             ?>
                             <li class="currentpage"><a href="index.php?page=accueil" title="">Accueil</a></li>
                             <li><a href="" title="">Présentation</a></li>
+                            <li><a href="index.php?page=associations" title="Associations">Associations</a></li>
                             <li><a href="index.php?page=contact" title="Contact">Contact</a></li>
                             <?php
                         }

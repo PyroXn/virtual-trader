@@ -358,34 +358,33 @@ function myclassement() {
 function classementAssoc() {
     verification();
     connect();
-    $historique_brut = mysql_query("SELECT ass.designation, act.Nom, act.Price, ass.prix_achat FROM association ass inner join actions act on ass.id_action=act.id");
+    $assoc_brut = mysql_query("SELECT ass.designation, act.Nom, act.Price, ass.prix_achat FROM association ass inner join actions act on ass.id_action=act.id");
     $contenu = '
         <h2>Associations</h2>
         <table id="bourse">
             <tr>
-               
-                <td width="25%"><b>Nom de l\'assoc</b></td>
-                <td width="25%"><b>Nom de l\'action</b></td>
-                <td width="17%"><b>Prix de départ</b></td>
-                <td width="11%"><b>Variation</b></td>
+                <td width="35%"><b>Nom de l\'assoc</b></td>
+                <td width="35%"><b>Nom de l\'action</b></td>
+                <td width="15%"><b>Prix de départ</b></td>
+                <td width="15%"><b>Variation</b></td>
             </tr>';
     $i = 0;
-    while ($historique = mysql_fetch_assoc($historique_brut)) {
+    while ($assoc = mysql_fetch_assoc($assoc_brut)) {
         if ($i % 2 == 0) {
             $contenu .= '<tr class="pair">';
         } else {
             $contenu .= '<tr class="impair">';
         }
-        $date = new DateTime($historique['Date']);
         $contenu .= '
-            <td>' . $date->format("H:i:s d/m/Y") . '</td>
-            <td>' . $historique['Nom'] . '</td>';
-        $historique['Sens'] == "Achat" ? $contenu .= '<td class="red">' . $historique['Sens'] . '</td>' : $contenu .= '<td class="green">' . $historique['Sens'] . '</td>';
-        $contenu .= '
-            <td>' . $historique['Quantite'] . '</td>
-            <td>' . $historique['PU'] . '</td>
-            <td>' . $historique['Total'] . '</td>
-        </tr>';
+            <td>' . $assoc['designation'] . '</td>
+            <td>' . $assoc['Nom'] . '</td>
+            <td>' . $assoc['prix_achat'] . '</td>';
+            if ($assoc['Price'] >= 0) {
+                $contenu .= '<td class="green">+ ' . $assoc['Price'] . '%</td>';
+            } else {
+                $contenu .= '<td class="red"> ' . $assoc['Price'] . '%</td>';
+            }
+        $contenu .= '</tr>';
         $i++;
     }
     $contenu .= '</table>';
