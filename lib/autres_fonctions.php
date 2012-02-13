@@ -379,13 +379,15 @@ function classementAssoc() {
             <td>' . $assoc['designation'] . '</td>
             <td>' . $assoc['Nom'] . '</td>
             <td>' . $assoc['prix_achat'] . '</td>';
-            if ($assoc['Price'] >= 0) {
-                $contenu .= '<td class="green">+ ' . $assoc['Price'] . '%</td>';
+        $variation = (($assoc['Price'] - $assoc['prix_achat'])/$assoc['prix_achat'])*100;
+            if ($variation >= 0) {
+                $contenu .= '<td class="green">+ ' . $variation . '%</td>';
             } else {
-                $contenu .= '<td class="red"> ' . $assoc['Price'] . '%</td>';
+                $contenu .= '<td class="red"> ' . $variation . '%</td>';
             }
         $contenu .= '</tr>';
         $i++;
+//        ((PrixAction - PrixDepart)/PrixDepart)*100
     }
     $contenu .= '</table>';
     display($contenu);
